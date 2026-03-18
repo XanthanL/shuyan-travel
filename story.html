@@ -29,10 +29,6 @@
             color: var(--color-dark-earth);
         }
         
-        .story-back-link i {
-            font-size: 0.9rem;
-        }
-        
         .story-header {
             margin-bottom: var(--space-xxl);
         }
@@ -52,20 +48,16 @@
             gap: 6px;
         }
         
-        .story-meta-item i {
-            font-size: 0.9rem;
-        }
-        
         .story-title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             line-height: 1.2;
             margin: 0 0 var(--space-md) 0;
             color: var(--color-dark-earth);
         }
         
         .story-subtitle {
-            font-size: 1.2rem;
-            line-height: 1.5;
+            font-size: 1.25rem;
+            line-height: 1.6;
             color: var(--color-earth);
             margin: 0 0 var(--space-xl) 0;
             font-weight: normal;
@@ -74,21 +66,22 @@
         
         .story-hero-image {
             width: 100%;
-            height: 400px;
+            height: 450px;
             object-fit: cover;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-md);
             margin-bottom: var(--space-xl);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
         
         .story-content {
-            line-height: 1.8;
-            font-size: 1.1rem;
+            line-height: 2.0;
+            font-size: 1.15rem;
             color: var(--color-ink);
         }
         
         .story-content p {
-            margin-bottom: var(--space-lg);
+            margin-bottom: var(--space-xl);
+            text-align: justify;
         }
         
         .story-content h2 {
@@ -99,89 +92,65 @@
             padding-bottom: var(--space-sm);
         }
         
-        .story-content h3 {
-            font-size: 1.4rem;
-            margin: var(--space-xl) 0 var(--space-md) 0;
-            color: var(--color-dark-earth);
-        }
-        
         .story-content blockquote {
             border-left: 4px solid var(--color-accent);
-            padding-left: var(--space-lg);
-            margin: var(--space-xl) 0;
+            padding: var(--space-sm) var(--space-lg);
+            margin: var(--space-xxl) 0;
             font-style: italic;
             color: var(--color-earth);
-            font-size: 1.2rem;
-            line-height: 1.6;
+            font-size: 1.25rem;
+            background-color: rgba(139, 115, 85, 0.05);
         }
         
         .story-content img {
             max-width: 100%;
             height: auto;
-            border-radius: var(--radius-md);
-            margin: var(--space-lg) 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .story-content .image-caption {
-            text-align: center;
-            font-size: 0.9rem;
-            color: var(--color-earth);
-            margin-top: -10px;
-            margin-bottom: var(--space-xl);
+            border-radius: var(--radius-sm);
+            margin: var(--space-xl) 0;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
         }
         
         .story-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin: var(--space-xl) 0;
+            gap: 12px;
+            margin: var(--space-xxl) 0 var(--space-xl);
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--color-light-earth);
         }
         
         .story-tag {
-            background-color: var(--color-light-earth);
-            color: var(--color-dark-earth);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            color: var(--color-earth);
             text-decoration: none;
-            transition: all 0.2s;
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
         
         .story-tag:hover {
-            background-color: var(--color-earth);
-            color: var(--color-paper);
+            color: var(--color-accent);
         }
         
         .story-navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: var(--space-xxl);
-            padding-top: var(--space-xl);
+            margin-top: var(--space-xl);
+            padding: var(--space-xl) 0;
             border-top: 1px solid var(--color-light-earth);
         }
         
         .story-nav-link {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             color: var(--color-earth);
             text-decoration: none;
-            transition: color 0.2s;
-            max-width: 45%;
+            transition: all 0.3s;
+            max-width: 48%;
         }
         
         .story-nav-link:hover {
             color: var(--color-dark-earth);
-        }
-        
-        .story-nav-link.prev {
-            text-align: left;
-        }
-        
-        .story-nav-link.next {
-            text-align: right;
-            flex-direction: row-reverse;
+            transform: translateY(-2px);
         }
         
         .story-nav-info {
@@ -190,508 +159,110 @@
         }
         
         .story-nav-label {
-            font-size: 0.85rem;
-            color: var(--color-light-earth);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.6;
         }
         
         .story-nav-title {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 500;
-            margin-top: 2px;
+            margin-top: 4px;
         }
-        
-        .story-share {
-            margin: var(--space-xl) 0;
-            padding: var(--space-lg);
-            background-color: var(--color-paper);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--color-light-earth);
-        }
-        
-        .story-share-title {
-            font-size: 1rem;
-            margin: 0 0 var(--space-md) 0;
-            color: var(--color-dark-earth);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .share-buttons {
-            display: flex;
-            gap: 12px;
-        }
-        
+
         .share-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
+            cursor: pointer;
+            padding: 8px;
             border-radius: 50%;
+            transition: all 0.2s;
+            color: var(--color-earth);
+        }
+
+        .share-button:hover {
             background-color: var(--color-light-earth);
             color: var(--color-dark-earth);
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        
-        .share-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .share-button.wechat:hover {
-            background-color: #07C160;
-            color: white;
-        }
-        
-        .share-button.weibo:hover {
-            background-color: #E6162D;
-            color: white;
-        }
-        
-        .share-button.link:hover {
-            background-color: var(--color-accent);
-            color: white;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .story-title {
-                font-size: 2rem;
-            }
-            
-            .story-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .story-hero-image {
-                height: 300px;
-            }
-            
-            .story-content {
-                font-size: 1rem;
-            }
-            
-            .story-content h2 {
-                font-size: 1.5rem;
-            }
-            
-            .story-content h3 {
-                font-size: 1.2rem;
-            }
-            
-            .story-navigation {
-                flex-direction: column;
-                gap: var(--space-lg);
-            }
-            
-            .story-nav-link {
-                max-width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .story-title {
-                font-size: 1.8rem;
-            }
-            
-            .story-hero-image {
-                height: 250px;
-            }
-            
-            .story-meta {
-                flex-direction: column;
-                gap: var(--space-sm);
-            }
-        }
-        
-        /* 打印样式 */
-        @media print {
-            .story-back-link,
-            .story-share,
-            .story-navigation {
-                display: none;
-            }
-            
-            .story-content {
-                font-size: 12pt;
-                line-height: 1.6;
-            }
-            
-            .story-title {
-                font-size: 18pt;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 导航栏 -->
-        <nav class="main-nav">
-            <div class="nav-brand">
-                <a href="index.html">树言·旅记</a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="map.html">旅行地图</a></li>
-                <li><a href="search.html">搜索故事</a></li>
-                <li><a href="about.html">关于</a></li>
-            </ul>
-            <button class="nav-toggle" aria-label="菜单">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        <!-- 头部 -->
+        <header class="site-header">
+            <h1 class="site-title"><a href="index.html" style="text-decoration: none; color: inherit;">树言·旅记</a></h1>
+            <p class="site-subtitle">路上的故事，时间的痕迹</p>
+        </header>
+
+        <nav class="site-nav">
+            <a href="index.html" class="nav-link">时间线</a>
+            <a href="search.html" class="nav-link">搜索故事</a>
+            <a href="map.html" class="nav-link">旅行地图</a>
+            <a href="about.html" class="nav-link">关于树言</a>
         </nav>
-        
-        <!-- 故事详情内容 -->
+
+        <!-- 详情容器 -->
         <div class="story-detail-container">
-            <!-- 返回链接 -->
             <a href="index.html" class="story-back-link">
-                <i class="fas fa-arrow-left"></i>
-                返回故事列表
+                <i class="fas fa-arrow-left"></i> 返回故事列表
             </a>
             
-            <!-- 故事头部 -->
             <header class="story-header">
                 <div class="story-meta">
-                    <span class="story-meta-item">
-                        <i class="far fa-calendar"></i>
-                        <span id="story-date">2023.09.10</span>
-                    </span>
-                    <span class="story-meta-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span id="story-location">大理 · 洱海</span>
-                    </span>
-                    <span class="story-meta-item">
-                        <i class="far fa-clock"></i>
-                        <span id="story-read-time">8分钟阅读</span>
-                    </span>
-                    <span class="story-meta-item">
-                        <i class="far fa-heart"></i>
-                        <span id="story-mood">平静 · 感动</span>
-                    </span>
+                    <span class="story-meta-item"><i class="far fa-calendar"></i> <span id="story-date">加载中...</span></span>
+                    <span class="story-meta-item"><i class="fas fa-map-marker-alt"></i> <span id="story-location">加载中...</span></span>
+                    <span class="story-meta-item"><i class="far fa-clock"></i> <span id="story-read-time">加载中...</span></span>
+                    <span class="story-meta-item"><i class="far fa-heart"></i> <span id="story-mood">加载中...</span></span>
                 </div>
                 
-                <h1 class="story-title" id="story-title">洱海边的日出</h1>
-                <p class="story-subtitle" id="story-subtitle">当第一缕阳光洒在湖面上，时间仿佛静止了</p>
+                <h1 class="story-title" id="story-title">正在开启旅程...</h1>
+                <p class="story-subtitle" id="story-subtitle"></p>
                 
-                <img src="https://images.unsplash.com/photo-1593693399746-4c28f0599f9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                     alt="洱海日出" 
-                     class="story-hero-image"
-                     id="story-hero-image">
+                <img src="" alt="" class="story-hero-image" id="story-hero-image">
             </header>
             
-            <!-- 故事内容 -->
             <article class="story-content" id="story-content">
-                <p>清晨五点，大理的天色还是深蓝。我裹着厚厚的披肩，沿着洱海边的栈道慢慢走着。空气里带着水汽的清凉，远处苍山的轮廓在晨雾中若隐若现。这是我来到大理的第三天，也是我第一次决定早起看日出。</p>
-                
-                <p>栈道上已经有三三两两的游客，大家都默契地保持着安静，仿佛怕惊扰了这片湖泊的梦境。我找了个面向东方的位置坐下，拿出保温杯，里面是昨晚在古城买的玫瑰花茶。温热的茶香在冷空气中格外清晰。</p>
-                
-                <h2>等待的时刻</h2>
-                
-                <p>等待日出的过程本身就是一种修行。天色从深蓝渐渐变成靛青，然后是淡紫。湖面上的雾气开始流动，像一层薄纱在水面飘荡。偶尔有早起的海鸥掠过水面，翅膀划破宁静，留下细碎的涟漪。</p>
-                
-                <blockquote>
-                    "在大理，时间不是用来追赶的，而是用来感受的。"
-                </blockquote>
-                
-                <p>我想起昨天在古城遇到的一位白族老人，他坐在自家门口雕刻木雕，动作缓慢而专注。我问他为什么不着急，他笑着说："这里的太阳每天都会升起，急什么？"</p>
-                
-                <img src="https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                     alt="洱海栈道">
-                <p class="image-caption">洱海边的木质栈道，通向远方的苍山</p>
-                
-                <h2>日出的瞬间</h2>
-                
-                <p>六点十分，东方的天际线开始泛出橙红。起初只是一条细线，然后慢慢扩散，染红了整片天空。云朵被镶上了金边，湖面也开始反射出温暖的光泽。</p>
-                
-                <p>突然，太阳的边缘露出了山头。不是一跃而出，而是缓缓地、庄严地升起。那一刻，整个世界都被点亮了。金色的阳光洒在湖面上，波光粼粼，像无数颗钻石在闪烁。远处的苍山也从阴影中显现出来，山顶的积雪在阳光下闪闪发光。</p>
-                
-                <p>我屏住呼吸，看着这壮丽的景象。相机就在手边，但我没有举起它。有些美，只能用心去记住。</p>
-                
-                <h3>当地人的日常</h3>
-                
-                <p>日出之后，洱海开始苏醒。渔民划着小船出海，船桨划破平静的水面。岸边有白族妇女在洗衣服，棒槌敲打衣物的声音清脆而有节奏。游客们开始拍照，孩子们在栈道上奔跑嬉戏。</p>
-                
-                <p>我继续沿着湖边散步。阳光越来越温暖，披肩已经不需要了。路过一个早餐摊，卖饵丝的老板娘热情地招呼我："小妹，看日出来了？来碗热乎的饵丝吧！"</p>
-                
-                <img src="https://images.unsplash.com/photo-1564574662336-88c9f5a6c8d8?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80" 
-                     alt="白族传统建筑">
-                <p class="image-caption">洱海边的白族传统建筑，三坊一照壁的格局</p>
-                
-                <h2>反思与感悟</h2>
-                
-                <p>坐在湖边吃着热腾腾的饵丝，我开始思考这次旅行的意义。在城市里，我们总是被时间追赶——赶地铁、赶会议、赶 deadline。但在大理，在洱海边，时间恢复了它本来的节奏。</p>
-                
-                <p>日出日落，潮涨潮退，这些自然的节律提醒我们：有些东西比效率更重要。比如等待的耐心，比如静观的专注，比如与自然共鸣的能力。</p>
-                
-                <blockquote>
-                    "旅行不是为了到达某个地方，而是为了找到某种状态。"
-                </blockquote>
-                
-                <p>离开洱海时，太阳已经完全升起。湖面金光闪闪，苍山清晰可见。我回头看了一眼，把这个画面刻在心里。我知道，回到城市后，当我感到焦虑或疲惫时，我会想起这个清晨，想起洱海边的日出，想起时间可以如此缓慢而美好。</p>
+                <p style="text-align: center; padding: 40px;">正在翻开日记本...</p>
             </article>
             
-            <!-- 故事标签 -->
-            <div class="story-tags" id="story-tags">
-                <a href="#" class="story-tag">#大理</a>
-                <a href="#" class="story-tag">#洱海</a>
-                <a href="#" class="story-tag">#日出</a>
-                <a href="#" class="story-tag">#旅行感悟</a>
-                <a href="#" class="story-tag">#慢生活</a>
-            </div>
+            <div class="story-tags" id="story-tags"></div>
             
-            <!-- 分享功能 -->
-            <div class="story-share">
-                <h3 class="story-share-title">
-                    <i class="fas fa-share-alt"></i>
-                    分享这个故事
-                </h3>
-                <div class="share-buttons">
-                    <a href="#" class="share-button wechat" title="分享到微信">
-                        <i class="fab fa-weixin"></i>
-                    </a>
-                    <a href="#" class="share-button weibo" title="分享到微博">
-                        <i class="fab fa-weibo"></i>
-                    </a>
-                    <a href="#" class="share-button link" title="复制链接" onclick="copyStoryLink()">
-                        <i class="fas fa-link"></i>
-                    </a>
+            <!-- 分享 -->
+            <div style="margin: 40px 0; text-align: center;">
+                <p style="font-size: 0.9rem; color: var(--color-earth); margin-bottom: 15px;">分享这段记忆</p>
+                <div style="display: flex; justify-content: center; gap: 20px;">
+                    <i class="fab fa-weixin share-button wechat"></i>
+                    <i class="fab fa-weibo share-button weibo"></i>
+                    <i class="fas fa-link share-button link"></i>
                 </div>
             </div>
-            
-            <!-- 故事导航 -->
-            <div class="story-navigation">
-                <a href="#" class="story-nav-link prev" id="prev-story">
+
+            <nav class="story-navigation">
+                <a href="#" class="story-nav-link prev" id="prev-story" style="display: none;">
                     <i class="fas fa-arrow-left"></i>
                     <div class="story-nav-info">
-                        <span class="story-nav-label">上一篇</span>
-                        <span class="story-nav-title">古城夜话</span>
+                        <span class="story-nav-label">前一篇</span>
+                        <span class="story-nav-title"></span>
                     </div>
                 </a>
                 
-                <a href="#" class="story-nav-link next" id="next-story">
+                <a href="#" class="story-nav-link next" id="next-story" style="display: none;">
                     <div class="story-nav-info">
-                        <span class="story-nav-label">下一篇</span>
-                        <span class="story-nav-title">苍山徒步记</span>
+                        <span class="story-nav-label">后一篇</span>
+                        <span class="story-nav-title"></span>
                     </div>
                     <i class="fas fa-arrow-right"></i>
                 </a>
-            </div>
+            </nav>
         </div>
         
-        <!-- 页脚 -->
         <footer class="site-footer">
             <p>© 2018-2026 树言·旅记 | 记录每一次出发</p>
-            <p class="footer-note">故事皆为亲身经历，转载请注明出处</p>
         </footer>
     </div>
     
-    <!-- 故事详情页面脚本 -->
-    <script>
-        // 故事数据（示例）
-        const currentStory = {
-            id: 1,
-            title: "洱海边的日出",
-            subtitle: "当第一缕阳光洒在湖面上，时间仿佛静止了",
-            date: "2023.09.10",
-            location: "大理 · 洱海",
-            readTime: "8分钟阅读",
-            mood: "平静 · 感动",
-            tags: ["大理", "洱海", "日出", "旅行感悟", "慢生活"],
-            prevStory: {
-                id: 0,
-                title: "古城夜话",
-                url: "story.html?id=0"
-            },
-            nextStory: {
-                id: 2,
-                title: "苍山徒步记",
-                url: "story.html?id=2"
-            }
-        };
-        
-        // 从URL参数获取故事ID
-        function getStoryIdFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('id') || '1';
-        }
-        
-        // 更新页面内容
-        function updateStoryContent() {
-            const storyId = getStoryIdFromURL();
-            
-            // 更新元数据
-            document.getElementById('story-date').textContent = currentStory.date;
-            document.getElementById('story-location').textContent = currentStory.location;
-            document.getElementById('story-read-time').textContent = currentStory.readTime;
-            document.getElementById('story-mood').textContent = currentStory.mood;
-            
-            // 更新标题
-            document.getElementById('story-title').textContent = currentStory.title;
-            document.getElementById('story-subtitle').textContent = currentStory.subtitle;
-            
-            // 更新页面标题
-            document.title = `${currentStory.title} - 树言·旅记`;
-            
-            // 更新导航链接
-            const prevLink = document.getElementById('prev-story');
-            const nextLink = document.getElementById('next-story');
-            
-            if (currentStory.prevStory) {
-                prevLink.href = currentStory.prevStory.url;
-                prevLink.querySelector('.story-nav-title').textContent = currentStory.prevStory.title;
-            } else {
-                prevLink.style.display = 'none';
-            }
-            
-            if (currentStory.nextStory) {
-                nextLink.href = currentStory.nextStory.url;
-                nextLink.querySelector('.story-nav-title').textContent = currentStory.nextStory.title;
-            } else {
-                nextLink.style.display = 'none';
-            }
-            
-            // 更新标签
-            const tagsContainer = document.getElementById('story-tags');
-            tagsContainer.innerHTML = '';
-            currentStory.tags.forEach(tag => {
-                const tagElement = document.createElement('a');
-                tagElement.href = `#`;
-                tagElement.className = 'story-tag';
-                tagElement.textContent = `#${tag}`;
-                tagsContainer.appendChild(tagElement);
-            });
-        }
-        
-        // 复制故事链接
-        function copyStoryLink() {
-            const url = window.location.href;
-            navigator.clipboard.writeText(url).then(() => {
-                alert('故事链接已复制到剪贴板！');
-            }).catch(err => {
-                console.error('复制失败:', err);
-                // 备用方法
-                const tempInput = document.createElement('input');
-                tempInput.value = url;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                alert('故事链接已复制到剪贴板！');
-            });
-        }
-        
-        // 图片懒加载
-        function lazyLoadImages() {
-            const images = document.querySelectorAll('.story-content img');
-            
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        const src = img.getAttribute('data-src');
-                        if (src) {
-                            img.src = src;
-                            img.removeAttribute('data-src');
-                        }
-                        observer.unobserve(img);
-                    }
-                });
-            });
-            
-            images.forEach(img => {
-                if (img.hasAttribute('data-src')) {
-                    imageObserver.observe(img);
-                }
-            });
-        }
-        
-        // 阅读进度跟踪
-        function setupReadingProgress() {
-            const content = document.getElementById('story-content');
-            const progressBar = document.createElement('div');
-            progressBar.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 0%;
-                height: 3px;
-                background-color: var(--color-accent);
-                z-index: 1000;
-                transition: width 0.1s;
-            `;
-            document.body.appendChild(progressBar);
-            
-            window.addEventListener('scroll', () => {
-                const windowHeight = window.innerHeight;
-                const documentHeight = document.documentElement.scrollHeight;
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
-                progressBar.style.width = `${scrollPercent}%`;
-            });
-        }
-        
-        // 键盘导航
-        function setupKeyboardNavigation() {
-            document.addEventListener('keydown', (e) => {
-                // 左箭头：上一篇
-                if (e.key === 'ArrowLeft' && currentStory.prevStory) {
-                    window.location.href = currentStory.prevStory.url;
-                }
-                // 右箭头：下一篇
-                else if (e.key === 'ArrowRight' && currentStory.nextStory) {
-                    window.location.href = currentStory.nextStory.url;
-                }
-                // ESC：返回首页
-                else if (e.key === 'Escape') {
-                    window.location.href = 'index.html';
-                }
-            });
-        }
-        
-        // 初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            updateStoryContent();
-            lazyLoadImages();
-            setupReadingProgress();
-            setupKeyboardNavigation();
-            
-            // 添加打印按钮
-            const printButton = document.createElement('button');
-            printButton.innerHTML = '<i class="fas fa-print"></i> 打印';
-            printButton.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 16px;
-                background-color: var(--color-paper);
-                color: var(--color-dark-earth);
-                border: 1px solid var(--color-light-earth);
-                border-radius: 20px;
-                cursor: pointer;
-                font-size: 0.9rem;
-                z-index: 100;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                transition: all 0.2s;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-            `;
-            printButton.onmouseover = () => {
-                printButton.style.backgroundColor = 'var(--color-light-earth)';
-            };
-            printButton.onmouseout = () => {
-                printButton.style.backgroundColor = 'var(--color-paper)';
-            };
-            printButton.onclick = () => window.print();
-            document.body.appendChild(printButton);
-            
-            console.log('故事详情页面加载完成');
-        });
-    </script>
+    <!-- 依赖脚本 -->
+    <script src="js/stories.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/story-detail.js"></script>
 </body>
 </html>

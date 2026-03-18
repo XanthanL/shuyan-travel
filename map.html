@@ -270,134 +270,200 @@
     </header>
     
     <nav class="site-nav">
-        <div class="nav-links">
-            <a href="index.html" class="nav-link" data-page="时间线">时间线</a>
-            <a href="map.html" class="nav-link active" data-page="旅行地图">旅行地图</a>
-            <a href="about.html" class="nav-link" data-page="关于树言">关于树言</a>
-        </div>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="搜索地点..." class="search-input">
-            <button id="search-button" class="search-button">🔍</button>
-        </div>
+        <a href="index.html" class="nav-link">时间线</a>
+        <a href="search.html" class="nav-link">搜索故事</a>
+        <a href="map.html" class="nav-link active">旅行地图</a>
+        <a href="about.html" class="nav-link">关于树言</a>
     </nav>
     
     <main class="main-content">
         <div class="map-header">
-            <h2 class="map-title">旅行地图</h2>
+            <h2 class="map-title">旅行足迹</h2>
             <p class="map-description">
-                这是树言的旅行足迹。每一个标记都是一段记忆，每一个地点都有一个故事。
-                点击地点可以查看相关的故事，或者继续探索未知的旅程。
+                这是我用脚步丈量出的痕迹。左侧是每一段记忆的索引，右侧是它们在时空中的位置。
             </p>
         </div>
         
-        <!-- 地图可视化区域 -->
-        <div class="map-visualization">
-            <div id="travel-map"></div>
-        </div>
-        
-        <!-- 旅行统计 -->
-        <div class="travel-stats">
-            <h3 class="stats-title">八年旅行统计</h3>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">年</div>
+        <!-- 重构后的地图容器布局 -->
+        <div class="map-layout">
+            <!-- 左侧：足迹列表 -->
+            <aside class="map-sidebar" id="map-sidebar">
+                <div class="sidebar-header">
+                    <span id="location-count">加载中...</span>
+                    <button class="show-all-btn" onclick="showAllLocations()">显示全图</button>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">22</div>
-                    <div class="stat-label">个省份</div>
+                <div class="location-list-container" id="location-list">
+                    <!-- 由 JS 动态填充 -->
+                    <div class="loading-sidebar">正在整理行囊...</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">156</div>
-                    <div class="stat-label">个故事</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">42,000</div>
-                    <div class="stat-label">公里</div>
-                </div>
+            </aside>
+
+            <!-- 右侧：地图实体 -->
+            <div class="map-main">
+                <div id="travel-map"></div>
             </div>
         </div>
-        
-        <!-- 地点列表 -->
-        <div class="locations-list">
-            <!-- 云南 -->
-            <div class="location-card">
-                <h3 class="location-name">云南 · 雨崩村</h3>
-                <div class="location-date">最近到访：2026年3月</div>
-                <p class="location-description">
-                    隐藏在梅里雪山脚下的藏族村落，需要徒步才能到达。
-                    这里的时间仿佛静止，只有雨声、风声和诵经声。
-                </p>
-                <div class="location-stories">
-                    <a href="index.html#story1" class="story-link">雨崩村的制茶老人</a>
-                </div>
-            </div>
-            
-            <!-- 甘肃 -->
-            <div class="location-card">
-                <h3 class="location-name">甘肃 · 敦煌</h3>
-                <div class="location-date">最近到访：2026年2月</div>
-                <p class="location-description">
-                    丝绸之路的重镇，沙漠与绿洲的交汇处。
-                    莫高窟的壁画，鸣沙山的星空，月牙泉的奇迹。
-                </p>
-                <div class="location-stories">
-                    <a href="index.html#story2" class="story-link">沙漠中的星空守望者</a>
-                </div>
-            </div>
-            
-            <!-- 四川 -->
-            <div class="location-card">
-                <h3 class="location-name">四川 · 康定</h3>
-                <div class="location-date">最近到访：2026年1月</div>
-                <p class="location-description">
-                    川藏线的起点，情歌的故乡。
-                    折多山的险峻，新都桥的光影，藏寨的炊烟。
-                </p>
-                <div class="location-stories">
-                    <a href="index.html#story3" class="story-link">318国道上的搭车经历</a>
-                </div>
-            </div>
-            
-            <!-- 西藏 -->
-            <div class="location-card">
-                <h3 class="location-name">西藏 · 拉萨</h3>
-                <div class="location-date">到访：2025年10月</div>
-                <p class="location-description">
-                    世界屋脊的圣城，阳光之城。
-                    布达拉宫的庄严，大昭寺的虔诚，八廓街的转经。
-                </p>
-                <div class="location-stories">
-                    <a href="#" class="story-link">大昭寺前的朝圣者</a>
-                </div>
-            </div>
-            
-            <!-- 新疆 -->
-            <div class="location-card">
-                <h3 class="location-name">新疆 · 喀纳斯</h3>
-                <div class="location-date">到访：2025年8月</div>
-                <p class="location-description">
-                    神的自留地，秋天的童话。
-                    湖怪的传说，图瓦人的木屋，白桦林的金黄。
-                </p>
-                <div class="location-stories">
-                    <a href="#" class="story-link">图瓦老人的冬不拉</a>
-                </div>
-            </div>
-            
-            <!-- 内蒙古 -->
-            <div class="location-card">
-                <h3 class="location-name">内蒙古 · 呼伦贝尔</h3>
-                <div class="location-date">到访：2025年6月</div>
-                <p class="location-description">
-                    中国最美的草原，风吹草低见牛羊。
-                    蒙古包的炊烟，马头琴的悠扬，草原的星空。
-                </p>
-                <div class="location-stories">
-                    <a href="#" class="story-link">草原上的牧马人</a>
-                </div>
-            </div>
+
+        <!-- 统计区域移动到下方 -->
+        <div class="travel-stats-simple">
+            <div class="stat-box"><strong>8</strong> 年旅程</div>
+            <div class="stat-box"><strong>22</strong> 个省份</div>
+            <div class="stat-box"><strong>156</strong> 篇日记</div>
         </div>
+    </main>
+
+    <style>
+        /* 地图页面布局重构样式 */
+        .map-layout {
+            display: flex;
+            height: 650px;
+            background: var(--color-paper);
+            border: 1px solid var(--color-light-earth);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: var(--space-xl);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .map-sidebar {
+            width: 350px;
+            border-right: 1px solid var(--color-light-earth);
+            display: flex;
+            flex-direction: column;
+            background-color: rgba(255, 248, 225, 0.3);
+        }
+
+        .sidebar-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--color-light-earth);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-earth);
+        }
+
+        .show-all-btn {
+            background: none;
+            border: 1px solid var(--color-earth);
+            color: var(--color-earth);
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .show-all-btn:hover {
+            background: var(--color-earth);
+            color: white;
+        }
+
+        .location-list-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .map-main {
+            flex: 1;
+            position: relative;
+        }
+
+        #travel-map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 列表项样式 */
+        .location-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .location-item:hover {
+            border-color: var(--color-accent);
+            transform: translateX(5px);
+            box-shadow: 2px 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .location-item.active {
+            background: var(--color-light-earth);
+            border-color: var(--color-earth);
+        }
+
+        .location-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .location-item-name {
+            font-weight: bold;
+            color: var(--color-dark-earth);
+            font-size: 1.1rem;
+        }
+
+        .location-item-date {
+            font-size: 0.85rem;
+            color: var(--color-earth);
+            font-family: var(--font-sans);
+        }
+
+        .location-item-desc {
+            font-size: 0.9rem;
+            color: var(--color-ink);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 统计条样式 */
+        .travel-stats-simple {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-xxl);
+            padding: var(--space-xl) 0;
+            border-top: 1px solid var(--color-light-earth);
+        }
+
+        .stat-box {
+            font-size: 1.1rem;
+            color: var(--color-earth);
+        }
+
+        .stat-box strong {
+            font-size: 2rem;
+            color: var(--color-dark-earth);
+            margin-right: 5px;
+            font-weight: normal;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 900px) {
+            .map-layout {
+                flex-direction: column-reverse;
+                height: 800px;
+            }
+
+            .map-sidebar {
+                width: 100%;
+                height: 300px;
+            }
+
+            .map-main {
+                height: 500px;
+            }
+        }
+    </style>
         
         <!-- 地图图例 -->
         <div class="map-legend">

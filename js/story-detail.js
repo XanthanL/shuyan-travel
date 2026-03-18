@@ -408,13 +408,8 @@ function showError(message) {
 
 // 按标签筛选
 function filterByTag(tag) {
-    // 这里可以扩展为跳转到搜索页面
-    showToast(`筛选标签: #${tag}`);
-    // 临时实现：在控制台显示相关故事
-    if (window.filterStoriesByTag) {
-        const stories = window.filterStoriesByTag(tag);
-        console.log(`找到 ${stories.length} 个相关故事:`, stories.map(s => s.title));
-    }
+    // 跳转到搜索页面并执行搜索
+    window.location.href = `search.html?query=${encodeURIComponent(tag)}`;
 }
 
 // 添加打印按钮
