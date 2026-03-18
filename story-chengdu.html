@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宽窄巷子的慢生活 - 树言·旅记</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 故事专用样式 */
+        .story-hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1567945716310-4745a0b5b6c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: var(--space-xxl);
+        }
+        
+        .story-hero-content {
+            max-width: 800px;
+            padding: var(--space-xl);
+        }
+        
+        .story-hero-title {
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .story-hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-lg);
+            font-weight: 300;
+        }
+        
+        .story-hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-xl);
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+        
+        .story-hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* 故事内容容器 */
+        .story-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        /* 完整文章样式 */
+        .story-article {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--color-ink);
+            margin-bottom: var(--space-xxl);
+        }
+        
+        .story-article p {
+            margin-bottom: var(--space-xl);
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+        
+        .story-article p:first-child {
+            font-size: 1.25rem;
+            line-height: 2.0;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-xxl);
+            font-weight: 500;
+        }
+        
+        .story-article img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin: var(--space-xl) auto;
+            display: block;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        
+        .story-quote {
+            border-left: 4px solid var(--color-accent);
+            padding-left: var(--space-lg);
+            margin: var(--space-xxl) 0;
+            font-style: italic;
+            color: var(--color-earth);
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        /* 简洁导航 */
+        .simple-navigation {
+            margin: var(--space-xxl) auto var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background-color: var(--color-light-earth);
+            color: var(--color-dark-earth);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-home-btn:hover {
+            background-color: var(--color-earth);
+            color: var(--color-paper);
+            transform: translateY(-2px);
+        }
+        
+        .nav-arrows {
+            display: flex;
+            gap: var(--space-md);
+        }
+        
+        .nav-arrow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background-color: transparent;
+            color: var(--color-earth);
+            text-decoration: none;
+            border: 1px solid var(--color-light-earth);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-arrow-btn:hover {
+            background-color: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .story-hero {
+                height: 50vh;
+                min-height: 300px;
+            }
+            
+            .story-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .story-hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .story-hero-meta {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+            
+            .simple-navigation {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+            
+            .nav-arrows {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .story-hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .story-article {
+                font-size: 1.05rem;
+                line-height: 1.8;
+            }
+            
+            .story-article p:first-child {
+                font-size: 1.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="index.html">树言·旅记</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="map.html">旅行地图</a></li>
+                <li><a href="search.html">搜索故事</a></li>
+                <li><a href="about.html">关于</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+        
+        <!-- 故事英雄区域 -->
+        <section class="story-hero">
+            <div class="story-hero-content">
+                <h1 class="story-hero-title">宽窄巷子的慢生活</h1>
+                <p class="story-hero-subtitle">在成都的巷弄里，寻找时间的另一种流速。茶馆、糖画、火锅，构成了一幅悠闲的生活画卷。</p>
+                <div class="story-hero-meta">
+                    <div class="story-hero-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>2020.07.11</span>
+                    </div>
+                    <div class="story-hero-meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>成都 · 宽窄巷子</span>
+                    </div>
+                    <div class="story-hero-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>12分钟阅读</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 故事内容 -->
+        <div class="story-container">
+            <article class="story-article">
+                <p>成都的夏天，热得让人只想找个阴凉处躲起来。我走进宽窄巷子时，正是下午两点，太阳最毒辣的时候。但奇怪的是，巷子里的人似乎都不着急——茶馆里坐满了人，竹椅、盖碗茶、龙门阵，构成了成都特有的夏日午后。</p>
+                
+                <p>我找了家看起来有些年头的茶馆坐下。老板是个五十多岁的大叔，穿着白色汗衫，摇着蒲扇。"喝啥子茶？"他问，语气里带着成都人特有的慵懒。我要了杯竹叶青，他点点头，转身去泡茶。动作不快，但每个步骤都恰到好处——烫杯、投茶、注水、盖盖，一气呵成。</p>
+                
+                <p>等待茶凉的时候，我观察着周围的人。隔壁桌是三个老人，正在下象棋。他们下得很慢，每走一步都要思考很久，但没有人催促。对面是一对年轻情侣，女孩在看书，男孩在玩手机，两人偶尔低声交谈几句，然后又各自沉浸在自己的世界里。</p>
+                
+                <img loading="lazy" src="https://images.unsplash.com/photo-1543423925-b0c6e3a5e4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="成都茶馆">
+                
+                <p>茶来了，我慢慢品着。竹叶青的清香在口中散开，带着一丝甘甜。这时，一位老人踱到我桌边。"小伙子，一个人？"他问。我点点头，他就在我对面坐下。"我在这条巷子住了六十年了，"他说，"看着它从破旧的老街变成旅游景点，但有些东西一直没变。"</p>
+                
+                <div class="story-quote">
+                    "成都人懂得生活。你看那些喝茶的、下棋的、摆龙门阵的，他们不是在浪费时间，而是在享受时间。"
+                </div>
+                
+                <p>老人告诉我，他年轻时是巷子里的糖画艺人。"那时候没有机器，全靠一双手。"他说着，用手比划着画糖的动作。"画龙要一气呵成，画凤要手腕灵活。快了不行，糖会断；慢了也不行，糖会凝固。"</p>
+                
+                <p>"那您画了多久？"我问。</p>
+                
+                <p>"四十年，"他平静地说，"每天从早画到晚。有人问我累不累，我说不累。当你喜欢一件事，时间就不是负担，而是享受。"</p>
+                
+                <p>我突然想到，现代社会推崇效率，推崇 multitasking，推崇"时间就是金钱"。但在宽窄巷子，时间似乎有了不同的意义。这里的人不追求效率，不追求产出，他们追求的是"刚好"——茶的温度刚好，阳光的角度刚好，聊天的节奏刚好。</p>
+                
+                <p>喝完茶，我在巷子里慢慢逛。宽巷子不宽，窄巷子不窄，这是成都人的幽默。青砖灰瓦，雕花门窗，每一处细节都透着岁月的痕迹。游客很多，但奇怪的是，这里并不显得拥挤。人们悠闲地走着，拍照，买东西，一切都井然有序。</p>
+                
+                <p>在一个转角，我看到了糖画摊子。摊主是个年轻人，正在画一只凤凰。他的手法很熟练，糖浆在铁板上流动，很快就勾勒出凤凰的轮廓。我站在旁边看了很久，直到他完成作品。</p>
+                
+                <p>"要一个吗？"他问。</p>
+                
+                <p>"你会画糖画多久了？"我反问。</p>
+                
+                <p>"从小跟爷爷学的，"他说，"现在做这个的人越来越少了，但我觉得应该有人传承下去。"</p>
+                
+                <p>我买了一只凤凰，拿在手里舍不得吃。糖在阳光下晶莹剔透，凤凰的羽毛栩栩如生。这不仅仅是一件食物，更是一件艺术品，一种文化的传承。</p>
+                
+                <p>傍晚时分，我走进一家火锅店。成都的火锅和别处不同，它不追求辣度，追求的是香料的平衡。牛油、花椒、辣椒、豆瓣酱，各种味道在锅里交融，形成独特的风味。</p>
+                
+                <p>邻桌是一大家子人，老老少少围坐一桌。他们吃得很慢，一边吃一边聊天，笑声不断。我突然意识到，火锅之所以成为成都的文化符号，不仅仅因为它的味道，更因为它是一种社交方式。在火锅桌上，时间变慢了，关系变近了。</p>
+                
+                <p>离开宽窄巷子时，天已经黑了。灯笼亮起，给古老的巷子披上一层温暖的光。我回头看了一眼，茶馆里依然坐满了人，糖画摊子前围着一群孩子，火锅店的香味飘得很远。</p>
+                
+                <p>在回酒店的路上，我一直在思考"慢生活"的真正含义。它不仅仅是一种生活方式，更是一种生活哲学。在快节奏的现代社会，我们总是被推着往前走，很少有时间停下来思考：我们到底在追求什么？</p>
+                
+                <p>宽窄巷子给了我答案：生活不是被安排的，而是被享受的。在快与慢之间，在忙与闲之间，在传统与现代之间，找到那个"刚好"的点。就像那位糖画老人说的，当你喜欢一件事，时间就不是负担，而是享受。</p>
+                
+                <p>回到城市后，每当感到压力和焦虑时，我都会想起宽窄巷子的那个下午。想起茶馆里的盖碗茶，想起糖画摊前的凤凰，想起火锅店里的笑声。然后我会告诉自己：慢一点，没关系。生活不是竞赛，而是一场旅行。重要的不是到达终点，而是沿途的风景。</p>
+            </article>
+            
+            <!-- 简洁导航 -->
+            <div class="simple-navigation">
+                <a href="index.html" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    返回首页
+                </a>
+                <div class="nav-arrows">
+                    <a href="story-erhai.html" class="nav-arrow-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        上一篇：洱海边的日出
+                    </a>
+                    <a href="story-gugong.html" class="nav-arrow-btn">
+                        下一篇：故宫的清晨
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <footer class="site-footer">
+            <p>© 2018-2026 树言·旅记 | 记录每一次出发</p>
+            <p class="footer-note">故事皆为亲身经历，转载请注明出处</p>
+        </footer>
+    </div>
+    
+    <!-- 导航脚本 -->
+    <script src="js/main.js"></script>
+</body>
+</html>

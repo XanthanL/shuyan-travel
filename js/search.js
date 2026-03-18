@@ -20,11 +20,28 @@ let quickFilters, showAllButton;
 
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
-    initializeElements();
-    loadAllStories();
-    setupEventListeners();
-    initializeFilters();
-    performSearch(); // 初始显示所有故事
+    try {
+        initializeElements();
+        loadAllStories();
+        setupEventListeners();
+        initializeFilters();
+        performSearch(); // 初始显示所有故事
+    } catch (error) {
+        console.error('搜索功能初始化失败:', error);
+        // 显示友好的错误信息
+        const searchResults = document.getElementById('search-results');
+        if (searchResults) {
+            searchResults.innerHTML = `
+                <div class="no-results">
+                    <div class="no-results-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 class="no-results-title">功能暂时不可用</h3>
+                    <p class="no-results-text">搜索功能遇到问题，请刷新页面重试</p>
+                </div>
+            `;
+        }
+    }
 });
 
 // 初始化DOM元素
@@ -345,7 +362,7 @@ function createResultCard(story) {
                     <span class="result-tag">#${tag}</span>
                 `).join('')}
             </div>
-            <a href="story.html?id=${story.id}" class="result-link">
+            <a href="${getStoryPageUrl(story.id)}" class="result-link">
                 阅读完整故事
                 <i class="fas fa-arrow-right"></i>
             </a>
@@ -516,6 +533,17 @@ function debounce(func, wait) {
     };
 }
 
+// 获取故事页面URL
+function getStoryPageUrl(storyId) {
+    const storyPages = {
+        "1": "story-erhai.html",
+        "2": "story-chengdu.html", 
+        "3": "story-gugong.html"
+    };
+    return storyPages[storyId] || "index.html";
+}
+
 // 导出函数供其他脚本使用
 window.performSearch = performSearch;
 window.clearFilters = clearFilters;
+window.getStoryPageUrl = getStoryPageUrl;

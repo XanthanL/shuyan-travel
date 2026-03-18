@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故宫的清晨 - 树言·旅记</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 故事专用样式 */
+        .story-hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: var(--space-xxl);
+        }
+        
+        .story-hero-content {
+            max-width: 800px;
+            padding: var(--space-xl);
+        }
+        
+        .story-hero-title {
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .story-hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: var(--space-lg);
+            font-weight: 300;
+        }
+        
+        .story-hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-xl);
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+        
+        .story-hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* 故事内容容器 */
+        .story-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+        
+        /* 完整文章样式 */
+        .story-article {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--color-ink);
+            margin-bottom: var(--space-xxl);
+        }
+        
+        .story-article p {
+            margin-bottom: var(--space-xl);
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+        
+        .story-article p:first-child {
+            font-size: 1.25rem;
+            line-height: 2.0;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-xxl);
+            font-weight: 500;
+        }
+        
+        .story-article img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin: var(--space-xl) auto;
+            display: block;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        
+        .story-quote {
+            border-left: 4px solid var(--color-accent);
+            padding-left: var(--space-lg);
+            margin: var(--space-xxl) 0;
+            font-style: italic;
+            color: var(--color-earth);
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        /* 简洁导航 */
+        .simple-navigation {
+            margin: var(--space-xxl) auto var(--space-xl);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background-color: var(--color-light-earth);
+            color: var(--color-dark-earth);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-home-btn:hover {
+            background-color: var(--color-earth);
+            color: var(--color-paper);
+            transform: translateY(-2px);
+        }
+        
+        .nav-arrows {
+            display: flex;
+            gap: var(--space-md);
+        }
+        
+        .nav-arrow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background-color: transparent;
+            color: var(--color-earth);
+            text-decoration: none;
+            border: 1px solid var(--color-light-earth);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-arrow-btn:hover {
+            background-color: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .story-hero {
+                height: 50vh;
+                min-height: 300px;
+            }
+            
+            .story-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .story-hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .story-hero-meta {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+            
+            .simple-navigation {
+                flex-direction: column;
+                gap: var(--space-lg);
+            }
+            
+            .nav-arrows {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .story-hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .story-article {
+                font-size: 1.05rem;
+                line-height: 1.8;
+            }
+            
+            .story-article p:first-child {
+                font-size: 1.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="index.html">树言·旅记</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="map.html">旅行地图</a></li>
+                <li><a href="search.html">搜索故事</a></li>
+                <li><a href="about.html">关于</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="菜单">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+        
+        <!-- 故事英雄区域 -->
+        <section class="story-hero">
+            <div class="story-hero-content">
+                <h1 class="story-hero-title">故宫的清晨</h1>
+                <p class="story-hero-subtitle">在游客到来之前，感受紫禁城的宁静与威严。空无一人的太和殿广场，让人仿佛能听到历史的回声。</p>
+                <div class="story-hero-meta">
+                    <div class="story-hero-meta-item">
+                        <i class="far fa-calendar"></i>
+                        <span>2018.04.15</span>
+                    </div>
+                    <div class="story-hero-meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>北京 · 故宫</span>
+                    </div>
+                    <div class="story-hero-meta-item">
+                        <i class="far fa-clock"></i>
+                        <span>18分钟阅读</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 故事内容 -->
+        <div class="story-container">
+            <article class="story-article">
+                <p>凌晨五点，天还没亮，我已经站在午门外。四月的北京，清晨的风还带着寒意。我是今天第一批进入故宫的游客，或者说，在游客大军到来之前，我想独自感受这座六百年宫殿的清晨。</p>
+                
+                <p>门开了，我穿过午门，走进太和殿广场。空无一人的广场显得格外空旷，青砖铺就的地面在晨光中泛着微光。我站在广场中央，环顾四周——太和殿、中和殿、保和殿，三座大殿在晨曦中静静矗立，金色的琉璃瓦反射着天边的微光。</p>
+                
+                <p>没有游客的喧嚣，没有导游的讲解，故宫恢复了它本来的面貌——一座沉默的宫殿，一座时间的容器。我慢慢走向太和殿，脚步声在空旷的广场上回响，仿佛能听到历史的回声。</p>
+                
+                <img loading="lazy" src="https://images.unsplash.com/photo-1551590190-88c5c5c5c5c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="故宫太和殿">
+                
+                <p>在太和殿前的台阶上，我遇到了一位老清洁工。他正在仔细地清扫台阶，动作缓慢而专注。"您在这里工作多久了？"我问。他抬起头，看了看我："三十年了。每天都是第一个来，最后一个走。"</p>
+                
+                <p>"三十年来，故宫有什么变化吗？"</p>
+                
+                <p>老人想了想，说："故宫没变，变的是人。以前来的都是学者、研究者，现在来的都是游客、网红。但故宫还是那个故宫，六百年来一直在这里。"</p>
+                
+                <div class="story-quote">
+                    "权力是暂时的，但智慧是永恒的。你看这些建筑，它们能屹立六百年，不是因为皇帝的权力，而是因为工匠的智慧。"
+                </div>
+                
+                <p>老人告诉我，他最喜欢清晨的故宫。"这时候的故宫最真实，"他说，"没有游客的喧哗，没有商业的喧嚣，只有建筑本身。你可以听到风穿过廊庑的声音，听到鸟在屋檐上鸣叫的声音，听到历史在砖缝里呼吸的声音。"</p>
+                
+                <p>我继续往前走，来到乾清宫。这里是皇帝处理政务的地方，也是权力斗争的中心。站在乾清宫前，我试图想象几百年前这里的情景——大臣们跪拜，太监们传旨，皇帝批阅奏折。但奇怪的是，我感受不到权力的威严，只感受到权力的虚空。</p>
+                
+                <p>那些曾经在这里发号施令的皇帝们，如今安在？那些曾经在这里争权夺利的大臣们，如今安在？权力来了又去，宫殿却依然矗立。这让我想起老子的话："天地不仁，以万物为刍狗。"在时间面前，权力是多么渺小。</p>
+                
+                <p>在御花园，我看到了几棵古树。牌子上写着："树龄：600年"。这些树见证了故宫的兴衰，见证了朝代的更替，见证了历史的变迁。它们不说话，但它们知道一切。</p>
+                
+                <p>我坐在一棵古树下，闭上眼睛。风吹过树叶，发出沙沙的声音。这声音让我想起那位清洁工的话："故宫没变，变的是人。"是啊，六百年了，皇帝换了一代又一代，大臣换了一批又一批，游客换了一拨又一拨，但故宫还是那个故宫。</p>
+                
+                <p>太阳完全升起时，我来到神武门。从这里可以俯瞰整个故宫，金色的屋顶在阳光下闪闪发光，像一片金色的海洋。我突然意识到，故宫的伟大不在于它的宏伟，而在于它的智慧。</p>
+                
+                <p>这种智慧体现在建筑的每一个细节里——精妙的榫卯结构，让建筑不用一根钉子就能屹立数百年；科学的排水系统，让故宫在暴雨中从不积水；合理的采光设计，让宫殿冬暖夏凉。这些智慧，比皇帝的权力更持久，比朝代的更替更永恒。</p>
+                
+                <p>在离开故宫的路上，我一直在思考一个问题：什么是真正的力量？是皇帝的权力吗？是军队的武力吗？还是金钱的财力？</p>
+                
+                <p>故宫给了我答案：真正的力量是智慧，是合作，是顺应自然。皇帝用权力统治国家，但工匠用智慧建造宫殿。权力会消失，但智慧会传承。对抗会失败，但合作会成功。</p>
+                
+                <p>我想起太和殿前的螭首。那些石雕的龙头，不仅是装饰，更是排水口。下雨时，雨水从屋顶流下，经过螭首的口中吐出，形成"千龙吐水"的奇观。这不仅仅是建筑的美学，更是建筑的智慧——让对抗变成合作，让问题变成艺术。</p>
+                
+                <p>离开故宫时，游客已经开始涌入。我回头看了一眼，太和殿广场上已经站满了人，导游的喇叭声此起彼伏。但我知道，我已经看到了故宫最真实的一面——在清晨的宁静中，在历史的回声中，在智慧的闪光中。</p>
+                
+                <p>回到酒店，我翻开笔记本，写下这样一段话："在故宫的清晨，我明白了三个道理：第一，权力是暂时的，但智慧是永恒的；第二，对抗是脆弱的，但合作是强大的；第三，建筑会老去，但精神会传承。"</p>
+                
+                <p>这次故宫之行，让我对历史有了新的理解。历史不仅仅是帝王将相的故事，更是普通人的智慧。那些无名的工匠，那些沉默的建筑，那些屹立的古树，它们才是历史的真正见证者。</p>
+                
+                <p>从此以后，每当我面对困难和挑战时，都会想起故宫的清晨。想起那些精妙的榫卯，想起那些吐水的螭首，想起那些六百年的古树。然后我会告诉自己：用智慧解决问题，用合作面对挑战，用耐心等待时间。因为，就像故宫一样，真正伟大的东西，经得起时间的考验。</p>
+            </article>
+            
+            <!-- 简洁导航 -->
+            <div class="simple-navigation">
+                <a href="index.html" class="nav-home-btn">
+                    <i class="fas fa-home"></i>
+                    返回首页
+                </a>
+                <div class="nav-arrows">
+                    <a href="story-chengdu.html" class="nav-arrow-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        上一篇：宽窄巷子的慢生活
+                    </a>
+                    <a href="story-erhai.html" class="nav-arrow-btn">
+                        下一篇：洱海边的日出
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 页脚 -->
+        <footer class="site-footer">
+            <p>© 2018-2026 树言·旅记 | 记录每一次出发</p>
+            <p class="footer-note">故事皆为亲身经历，转载请注明出处</p>
+        </footer>
+    </div>
+    
+    <!-- 导航脚本 -->
+    <script src="js/main.js"></script>
+</body>
+</html>
