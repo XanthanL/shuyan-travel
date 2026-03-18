@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅行地图 - 树言·旅记</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 地图页面特有样式 */
+        .map-container {
+            margin: var(--space-lg) 0;
+        }
+        
+        .map-header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+        
+        .map-title {
+            font-size: 2.5rem;
+            font-weight: normal;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .map-description {
+            font-size: 1.1rem;
+            color: var(--color-earth);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .map-visualization {
+            height: 500px;
+            background: linear-gradient(135deg, var(--color-light-earth) 0%, var(--color-paper) 100%);
+            border: 1px solid var(--color-light-earth);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-placeholder-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--color-earth);
+        }
+        
+        .map-placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: var(--space-md);
+            opacity: 0.3;
+        }
+        
+        .map-placeholder-text {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .locations-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .location-card {
+            background: rgba(255, 248, 225, 0.5);
+            border: 1px solid var(--color-light-earth);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            transition: all var(--transition-normal);
+        }
+        
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px var(--color-shadow);
+            border-color: var(--color-earth);
+        }
+        
+        .location-name {
+            font-size: 1.3rem;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-xs);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+        
+        .location-name::before {
+            content: '📍';
+            font-size: 1rem;
+        }
+        
+        .location-date {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-earth);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .location-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--color-ink);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .location-stories {
+            margin-top: var(--space-sm);
+        }
+        
+        .story-link {
+            display: inline-block;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-accent);
+            text-decoration: none;
+            padding: var(--space-xs) var(--space-sm);
+            border: 1px solid var(--color-light-earth);
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-normal);
+        }
+        
+        .story-link:hover {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+        
+        .travel-stats {
+            background: rgba(255, 248, 225, 0.5);
+            border: 1px solid var(--color-light-earth);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .stats-title {
+            font-size: 1.5rem;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-md);
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: var(--space-md);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: normal;
+            color: var(--color-accent);
+            margin-bottom: var(--space-xs);
+            font-family: var(--font-sans);
+        }
+        
+        .stat-label {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-earth);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .map-legend {
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-light-earth);
+        }
+        
+        .legend-title {
+            font-size: 1.2rem;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-md);
+        }
+        
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-earth);
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        
+        .color-visited { background: var(--color-accent); }
+        .color-planned { background: var(--color-light-earth); }
+        .color-special { background: var(--color-earth); }
+        
+        @media (max-width: 768px) {
+            .map-visualization {
+                height: 300px;
+            }
+            
+            .locations-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <h1 class="site-title">树言·旅记</h1>
+        <p class="site-subtitle">路上的故事，时间的痕迹</p>
+    </header>
+    
+    <nav class="site-nav">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link" data-page="时间线">时间线</a>
+            <a href="map.html" class="nav-link active" data-page="旅行地图">旅行地图</a>
+            <a href="about.html" class="nav-link" data-page="关于树言">关于树言</a>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="搜索地点..." class="search-input">
+            <button id="search-button" class="search-button">🔍</button>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <div class="map-header">
+            <h2 class="map-title">旅行地图</h2>
+            <p class="map-description">
+                这是树言的旅行足迹。每一个标记都是一段记忆，每一个地点都有一个故事。
+                点击地点可以查看相关的故事，或者继续探索未知的旅程。
+            </p>
+        </div>
+        
+        <!-- 地图可视化区域 -->
+        <div class="map-visualization">
+            <div class="map-placeholder-content">
+                <div class="map-placeholder-icon">🗺️</div>
+                <div class="map-placeholder-text">交互式旅行地图 · 开发中</div>
+                <p style="margin-top: var(--space-sm); font-size: 0.9rem; max-width: 400px;">
+                    这里将展示树言去过的所有地方，包括：<br>
+                    • 交互式中国地图<br>
+                    • 点击地点查看故事<br>
+                    • 旅行路线可视化<br>
+                    • 时间线展示
+                </p>
+            </div>
+        </div>
+        
+        <!-- 旅行统计 -->
+        <div class="travel-stats">
+            <h3 class="stats-title">八年旅行统计</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">年</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">22</div>
+                    <div class="stat-label">个省份</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">156</div>
+                    <div class="stat-label">个故事</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">42,000</div>
+                    <div class="stat-label">公里</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 地点列表 -->
+        <div class="locations-list">
+            <!-- 云南 -->
+            <div class="location-card">
+                <h3 class="location-name">云南 · 雨崩村</h3>
+                <div class="location-date">最近到访：2026年3月</div>
+                <p class="location-description">
+                    隐藏在梅里雪山脚下的藏族村落，需要徒步才能到达。
+                    这里的时间仿佛静止，只有雨声、风声和诵经声。
+                </p>
+                <div class="location-stories">
+                    <a href="index.html#story1" class="story-link">雨崩村的制茶老人</a>
+                </div>
+            </div>
+            
+            <!-- 甘肃 -->
+            <div class="location-card">
+                <h3 class="location-name">甘肃 · 敦煌</h3>
+                <div class="location-date">最近到访：2026年2月</div>
+                <p class="location-description">
+                    丝绸之路的重镇，沙漠与绿洲的交汇处。
+                    莫高窟的壁画，鸣沙山的星空，月牙泉的奇迹。
+                </p>
+                <div class="location-stories">
+                    <a href="index.html#story2" class="story-link">沙漠中的星空守望者</a>
+                </div>
+            </div>
+            
+            <!-- 四川 -->
+            <div class="location-card">
+                <h3 class="location-name">四川 · 康定</h3>
+                <div class="location-date">最近到访：2026年1月</div>
+                <p class="location-description">
+                    川藏线的起点，情歌的故乡。
+                    折多山的险峻，新都桥的光影，藏寨的炊烟。
+                </p>
+                <div class="location-stories">
+                    <a href="index.html#story3" class="story-link">318国道上的搭车经历</a>
+                </div>
+            </div>
+            
+            <!-- 西藏 -->
+            <div class="location-card">
+                <h3 class="location-name">西藏 · 拉萨</h3>
+                <div class="location-date">到访：2025年10月</div>
+                <p class="location-description">
+                    世界屋脊的圣城，阳光之城。
+                    布达拉宫的庄严，大昭寺的虔诚，八廓街的转经。
+                </p>
+                <div class="location-stories">
+                    <a href="#" class="story-link">大昭寺前的朝圣者</a>
+                </div>
+            </div>
+            
+            <!-- 新疆 -->
+            <div class="location-card">
+                <h3 class="location-name">新疆 · 喀纳斯</h3>
+                <div class="location-date">到访：2025年8月</div>
+                <p class="location-description">
+                    神的自留地，秋天的童话。
+                    湖怪的传说，图瓦人的木屋，白桦林的金黄。
+                </p>
+                <div class="location-stories">
+                    <a href="#" class="story-link">图瓦老人的冬不拉</a>
+                </div>
+            </div>
+            
+            <!-- 内蒙古 -->
+            <div class="location-card">
+                <h3 class="location-name">内蒙古 · 呼伦贝尔</h3>
+                <div class="location-date">到访：2025年6月</div>
+                <p class="location-description">
+                    中国最美的草原，风吹草低见牛羊。
+                    蒙古包的炊烟，马头琴的悠扬，草原的星空。
+                </p>
+                <div class="location-stories">
+                    <a href="#" class="story-link">草原上的牧马人</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 地图图例 -->
+        <div class="map-legend">
+            <h3 class="legend-title">地图图例</h3>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color color-visited"></div>
+                    <span>已到访的地点</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-planned"></div>
+                    <span>计划中的旅程</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color color-special"></div>
+                    <span>有特别故事的地点</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <section class="about-section">
+        <h2 class="about-title">关于这张地图</h2>
+        <div class="about-content">
+            <p>这张地图记录了我三年来的旅行足迹。每一个标记都是一次相遇，每一个地点都有一个故事。</p>
+            <p>旅行不是为了到达，而是为了在路上。地图上的线条连接着过去和未来，也连接着我和那些在路上相遇的人们。</p>
+            <p>有些地方还会再去，有些地方可能只去一次。但每一次出发，都是一次新的开始。</p>
+        </div>
+    </section>
+    
+    <footer class="site-footer">
+        <p>《树言·旅记》· 始于2026年 · 旅程仍在继续</p>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script>
+        // 地图页面特有脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('地图页面已加载');
+            
+            // 地点卡片点击效果
+            const locationCards = document.querySelectorAll('.location-card');
+            locationCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'A') return; // 避免干扰链接点击
+                    
+                    const locationName = this.querySelector('.location-name').textContent;
+                    console.log(`查看地点: ${locationName}`);
+                    
+                    // 这里可以添加查看地点详情的逻辑
+                    showLocationDetail(locationName);
+                });
+            });
+            
+            // 故事链接点击效果
+            const storyLinks = document.querySelectorAll('.story-link');
+            storyLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const storyTitle = this.textContent;
+                    console.log(`查看故事: ${storyTitle}`);
+                    
+                    // 如果是有效的链接，跳转到对应故事
+                    if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+                        window.location.href = this.getAttribute('href');
+                    } else {
+                        alert(`故事"${storyTitle}"开发中，敬请期待！`);
+                    }

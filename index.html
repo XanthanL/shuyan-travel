@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>树言·旅记</title>
+    <style>
+        /* 基础重置和变量 */
+        :root {
+            --color-earth: #8B7355;
+            --color-dark-earth: #5D4037;
+            --color-light-earth: #D7CCC8;
+            --color-paper: #FFF8E1;
+            --color-ink: #3E2723;
+            --color-accent: #795548;
+            --font-serif: 'Georgia', 'Times New Roman', 'SimSun', serif;
+            --font-sans: 'Helvetica Neue', 'Arial', 'Microsoft YaHei', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-serif);
+            line-height: 1.8;
+            color: var(--color-ink);
+            background-color: var(--color-paper);
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d7ccc8' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* 头部样式 */
+        .site-header {
+            text-align: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--color-light-earth);
+            margin-bottom: 3rem;
+        }
+        
+        .site-title {
+            font-size: 3.5rem;
+            font-weight: normal;
+            color: var(--color-dark-earth);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .site-subtitle {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            color: var(--color-earth);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+        
+        /* 导航样式 */
+        .site-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-light-earth);
+        }
+        
+        .nav-link {
+            font-family: var(--font-sans);
+            color: var(--color-earth);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--color-dark-earth);
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--color-dark-earth);
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            margin-bottom: 4rem;
+        }
+        
+        /* 故事卡片样式 */
+        .story-card {
+            margin-bottom: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--color-light-earth);
+        }
+        
+        .story-card:last-child {
+            border-bottom: none;
+        }
+        
+        .story-date {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-earth);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .story-title {
+            font-size: 2.2rem;
+            font-weight: normal;
+            color: var(--color-dark-earth);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        
+        .story-excerpt {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--color-ink);
+        }
+        
+        .story-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-earth);
+        }
+        
+        .story-location::before {
+            content: '📍 ';
+        }
+        
+        .story-mood::before {
+            content: '💭 ';
+        }
+        
+        .read-more {
+            display: inline-block;
+            font-family: var(--font-sans);
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-top: 1rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+        
+        .read-more:hover {
+            border-bottom-color: var(--color-accent);
+        }
+        
+        /* 关于区域 */
+        .about-section {
+            padding: 3rem 0;
+            border-top: 1px solid var(--color-light-earth);
+            border-bottom: 1px solid var(--color-light-earth);
+            margin: 4rem 0;
+        }
+        
+        .about-title {
+            font-size: 1.8rem;
+            font-weight: normal;
+            color: var(--color-dark-earth);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-ink);
+        }
+        
+        /* 页脚样式 */
+        .site-footer {
+            text-align: center;
+            padding: 2rem 0;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-earth);
+            border-top: 1px solid var(--color-light-earth);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .site-title {
+                font-size: 2.5rem;
+            }
+            
+            .site-nav {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .story-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .story-card {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* 地图预览样式 */
+        .map-preview {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: rgba(255, 248, 225, 0.5);
+            border: 1px solid var(--color-light-earth);
+            border-radius: 4px;
+        }
+        
+        .map-title {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--color-earth);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .map-placeholder {
+            height: 200px;
+            background-color: var(--color-light-earth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-earth);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <h1 class="site-title">树言·旅记</h1>
+        <p class="site-subtitle">路上的故事，时间的痕迹</p>
+    </header>
+    
+    <nav class="site-nav">
+        <a href="#" class="nav-link active">时间线</a>
+        <a href="#" class="nav-link">旅行地图</a>
+        <a href="#" class="nav-link">关于树言</a>
+    </nav>
+    
+    <main class="main-content">
+        <!-- 最新故事 -->
+        <article class="story-card" id="story1">
+            <div class="story-date">2026年3月15日 · 云南 · 雨崩村</div>
+            <h2 class="story-title">雨崩村的制茶老人</h2>
+            <div class="story-excerpt">
+                <p>雨下了一整夜，清晨的山谷笼罩在薄雾中。我沿着泥泞的小路向上走，空气中弥漫着泥土和植物的气息。在半山腰的一间木屋前，我遇到了制茶的老人。</p>
+                <p>他正在院子里翻晒茶叶，动作缓慢而专注。看到我时，他只是点了点头，继续手中的工作。我站在屋檐下避雨，看着他一遍遍地翻动那些深绿色的叶子。</p>
+                <p>"这雨要下到什么时候？"我终于开口问道。</p>
+                <p>老人抬起头，看了看天空："该停的时候自然会停。"</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">云南雨崩村</span>
+                <span class="story-mood">宁静 · 相遇</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第二个故事 -->
+        <article class="story-card" id="story2">
+            <div class="story-date">2026年2月28日 · 甘肃 · 敦煌</div>
+            <h2 class="story-title">沙漠中的星空守望者</h2>
+            <div class="story-excerpt">
+                <p>敦煌的夜晚冷得刺骨。我裹紧外套，坐在沙丘上等待星空。远处，一个身影也在仰望天空。</p>
+                <p>他是一名天文爱好者，每年都会来这里观测星空。"城市的灯光太亮了，"他说，"只有在这里，才能看到真正的银河。"</p>
+                <p>他给我指认星座，讲述每个星座背后的故事。在浩瀚的星空下，人类的故事显得如此渺小，却又如此珍贵。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">甘肃敦煌</span>
+                <span class="story-mood">浩瀚 · 孤独</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第三个故事 -->
+        <article class="story-card" id="story3">
+            <div class="story-date">2026年1月12日 · 四川 · 康定</div>
+            <h2 class="story-title">318国道上的搭车经历</h2>
+            <div class="story-excerpt">
+                <p>在康定城外等了三个小时，终于有一辆卡车停了下来。司机是个沉默的藏族汉子，副驾驶上坐着他的小女儿。</p>
+                <p>车沿着蜿蜒的山路行驶，窗外是险峻的峡谷和奔腾的河流。小女孩偷偷看我，当我看向她时，她又迅速转过头去。</p>
+                <p>快到理塘时，司机突然开口："你为什么要走路？"</p>
+                <p>"为了遇见像你们这样的人。"我回答。</p>
+                <p>他笑了笑，这是我第一次看到他笑。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">四川康定</span>
+                <span class="story-mood">温暖 · 旅途</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第四个故事：2019年 -->
+        <article class="story-card" id="story4">
+            <div class="story-date">2019年8月 · 四川 · 四姑娘山</div>
+            <h2 class="story-title">登山向导老陈的最后一次登顶</h2>
+            <div class="story-excerpt">
+                <p>老陈今年六十二岁，当了四十年登山向导。他说这是最后一次带人登四姑娘山二峰。</p>
+                <p>"膝盖不行了，"他拍拍自己的腿，"但心里还想上。"</p>
+                <p>凌晨三点出发，头灯在黑暗中划出微弱的光。老陈走在最前面，步伐稳健，完全不像六十多岁的人。</p>
+                <p>快到峰顶时，他突然停下，指着东方："看，日出。"</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">四川四姑娘山</span>
+                <span class="story-mood">告别 · 传承</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第五个故事：2020年 -->
+        <article class="story-card" id="story5">
+            <div class="story-date">2020年11月 · 云南 · 沙溪古镇</div>
+            <h2 class="story-title">咖啡馆里的失恋女孩</h2>
+            <div class="story-excerpt">
+                <p>她在咖啡馆坐了三天，每天点同一杯美式，看同一本书。第三天，她终于开口："你说，人为什么要恋爱？"</p>
+                <p>我递给她一杯热巧克力："也许是为了学会告别。"</p>
+                <p>她笑了，眼泪却掉下来。原来她刚从北京逃到这里，结束了七年的感情。</p>
+                <p>"这里真好，"她说，"安静得能听见自己的心跳。"</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">云南沙溪</span>
+                <span class="story-mood">治愈 · 新生</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第六个故事：2021年 -->
+        <article class="story-card" id="story6">
+            <div class="story-date">2021年5月 · 西藏 · 冈仁波齐</div>
+            <h2 class="story-title">转山路上的朝圣者</h2>
+            <div class="story-excerpt">
+                <p>他一步一叩首，额头已经磕破，血迹混着泥土。我跟着他走了半天，终于忍不住问："你在祈求什么？"</p>
+                <p>他停下，看着神山："不求什么，只是走。"</p>
+                <p>后来我才知道，他的儿子去年在转山途中去世。他是在走儿子没走完的路。</p>
+                <p>"每走一步，就离他近一步。"他说。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">西藏冈仁波齐</span>
+                <span class="story-mood">信仰 · 救赎</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第七个故事：2022年 -->
+        <article class="story-card" id="story7">
+            <div class="story-date">2022年9月 · 新疆 · 喀什老城</div>
+            <h2 class="story-title">百年茶馆里的弹唱老人</h2>
+            <div class="story-excerpt">
+                <p>茶馆有一百二十年历史，老人在这里弹了六十年热瓦普。手指已经变形，琴声却依然清澈。</p>
+                <p>他给我讲茶馆的故事：苏联专家来过，知青来过，外国游客来过。琴声见证了一个世纪的变迁。</p>
+                <p>"年轻人都不学这个了，"他抚摸着琴身，"但我会弹到弹不动为止。"</p>
+                <p>夕阳透过花窗，把他的影子拉得很长。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">新疆喀什</span>
+                <span class="story-mood">坚守 · 时光</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第八个故事：2023年 -->
+        <article class="story-card" id="story8">
+            <div class="story-date">2023年7月 · 甘肃 · 莫高窟</div>
+            <h2 class="story-title">壁画修复师的三十年</h2>
+            <div class="story-excerpt">
+                <p>她在洞窟里工作了三十年，修复了四百平方米的壁画。每天工作八小时，只为了拯救0.1平方米。</p>
+                <p>"你看这个飞天，"她指着墙壁，"我修了三个月。每一笔都要和一千年前的人对话。"</p>
+                <p>我问她会不会厌倦。她摇头："怎么会？这是和时间赛跑。我们慢一点，历史就少一点。"</p>
+                <p>离开时，她还在工作，背影和壁画融为一体。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">甘肃敦煌</span>
+                <span class="story-mood">专注 · 永恒</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第九个故事：2024年 -->
+        <article class="story-card" id="story9">
+            <div class="story-date">2024年1月 · 黑龙江 · 漠河</div>
+            <h2 class="story-title">中国最北的邮递员</h2>
+            <div class="story-excerpt">
+                <p>零下四十度，他骑着摩托车在雪地里送信。这条路走了二十年，摔过无数次，冻伤过无数次。</p>
+                <p>"为什么不用汽车？"我问。</p>
+                <p>"有些地方只有摩托车能到，"他说，"而且，村民听到摩托车声就知道信来了。"</p>
+                <p>他给我看一封二十年前的信，收信人已经去世，寄信人也已去世。但他还在送，因为"信总要有个归宿"。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">黑龙江漠河</span>
+                <span class="story-mood">责任 · 孤独</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第十个故事：2025年 -->
+        <article class="story-card" id="story10">
+            <div class="story-date">2025年4月 · 贵州 · 千户苗寨</div>
+            <h2 class="story-title">最后的苗绣传人</h2>
+            <div class="story-excerpt">
+                <p>她九十二岁，眼睛几乎看不见，手却依然灵活。一幅绣品要绣三个月，卖的钱还不够买丝线。</p>
+                <p>"女儿不学，孙女不学，"她说，"但我要绣到绣不动。"</p>
+                <p>她给我看她的嫁衣，绣了三年，穿了三次：结婚、女儿结婚、孙女结婚。</p>
+                <p>"等我走了，这手艺就真的没了，"她摸着绣品，"但至少，我绣完了。"</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">贵州西江</span>
+                <span class="story-mood">传承 · 消逝</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第十一个故事：2019年 · 西藏 -->
+        <article class="story-card" id="story11">
+            <div class="story-date">2019年11月 · 西藏 · 纳木错</div>
+            <h2 class="story-title">圣湖边的暴风雪之夜</h2>
+            <div class="story-excerpt">
+                <p>在纳木错湖边扎营的第三天，暴风雪突然来袭。帐篷被吹得几乎散架，温度骤降到零下二十度。</p>
+                <p>食物只剩下一包压缩饼干，燃料也快用完了。我裹着所有衣服，在睡袋里瑟瑟发抖。</p>
+                <p>凌晨三点，风雪稍停。我钻出帐篷，看到此生最美的星空——银河横跨整个天空，湖面结冰如镜。</p>
+                <p>那一刻，所有的寒冷和恐惧都值得了。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">西藏纳木错</span>
+                <span class="story-mood">冒险 · 生存</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第十二个故事：2020年 · 新疆 -->
+        <article class="story-card" id="story12">
+            <div class="story-date">2020年7月 · 新疆 · 独库公路</div>
+            <h2 class="story-title">搭车穿越天山</h2>
+            <div class="story-excerpt">
+                <p>在独库公路起点等了五个小时，终于有一辆皮卡停下来。司机是哈萨克族牧民，要去巴音布鲁克。</p>
+                <p>车在天山峡谷中穿行，一边是悬崖，一边是峭壁。司机放着哈萨克民歌，歌声在山谷中回荡。</p>
+                <p>"这条路我走了三十年，"他说，"每年夏天赶羊上山，冬天赶羊下山。"</p>
+                <p>到巴音布鲁克时，他邀请我去他家喝马奶酒。毡房里，他的妻子正在煮奶茶，孩子们在草原上奔跑。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">新疆独库公路</span>
+                <span class="story-mood">旅途 · 相遇</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第十三个故事：2021年 · 云南 -->
+        <article class="story-card" id="story13">
+            <div class="story-date">2021年3月 · 云南 · 元阳梯田</div>
+            <h2 class="story-title">哈尼族老人的最后一季播种</h2>
+            <div class="story-excerpt">
+                <p>他今年八十五岁，在梯田里种了一辈子稻子。今年是最后一次，因为腿脚不行了。</p>
+                <p>"我爷爷开垦了这块田，"他指着脚下的梯田，"我父亲种了六十年，我种了六十五年。"</p>
+                <p>他教我插秧，动作缓慢但精准。"每一株都要对齐，"他说，"不然水就流不均匀。"</p>
+                <p>夕阳西下，梯田如镜，倒映着天空。老人坐在田埂上，看着自己的作品。</p>
+                <p>"明年就不种了，"他说，"但梯田还在，水还在流。"</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">云南元阳</span>
+                <span class="story-mood">传承 · 土地</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第十四个故事：2022年 · 甘肃 -->
+        <article class="story-card" id="story14">
+            <div class="story-date">2022年9月 · 甘肃 · 张掖丹霞</div>
+            <h2 class="story-title">地质公园里的摄影师</h2>
+            <div class="story-excerpt">
+                <p>他在张掖丹霞拍了二十年照片，只拍日出和日落时的色彩变化。</p>
+                <p>"丹霞不是石头，"他说，"是时间的画布。每一层颜色都是一个地质年代。"</p>
+                <p>他给我看他的照片，从2002年到2022年，记录了丹霞的细微变化。</p>
+                <p>"颜色在变淡，"他说，"风化在加速。也许再过二十年，就不是现在的样子了。"</p>
+                <p>但他还在拍，每天凌晨四点起床，等待第一缕阳光。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">甘肃张掖</span>
+                <span class="story-mood">时间 · 记录</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 第十五个故事：2023年 · 四川 -->
+        <article class="story-card" id="story15">
+            <div class="story-date">2023年6月 · 四川 · 稻城亚丁</div>
+            <h2 class="story-title">高原反应与陌生人的葡萄糖</h2>
+            <div class="story-excerpt">
+                <p>在海拔4700米的牛奶海，高原反应突然袭来。头痛欲裂，呼吸困难，几乎站不稳。</p>
+                <p>一个陌生的女孩递给我一瓶葡萄糖。"喝这个，"她说，"我每次来都带。"</p>
+                <p>我们在湖边坐下，她告诉我这是她第三次来亚丁。第一次是失恋，第二次是辞职，这次是庆祝康复。</p>
+                <p>"山不会安慰你，"她说，"但山会让你忘记。"</p>
+                <p>喝完葡萄糖，症状缓解。我们一起下山，在香格里拉镇告别。</p>
+                <p>没有留联系方式，但记得那瓶葡萄糖的甜味。</p>
+            </div>
+            <div class="story-meta">
+                <span class="story-location">四川稻城</span>
+                <span class="story-mood">善意 · 治愈</span>
+            </div>
+            <a href="#" class="read-more">阅读完整故事 →</a>
+        </article>
+        
+        <!-- 地图预览 -->
+        <div class="map-preview">
+            <div class="map-title">旅行足迹</div>
+            <div class="map-placeholder">
+                交互式旅行地图 · 开发中
+            </div>
+        </div>
+    </main>
+    
+    <!-- 关于区域 -->
+    <section class="about-section">
+        <h2 class="about-title">关于树言</h2>
+        <div class="about-content">
+            <p>我是树言，一个在路上的人。</p>
+            <p>没有固定的住所，没有明确的计划，只是随着心意行走。用脚步丈量土地，用文字记录相遇。</p>
+            <p>这个网站是我的旅行日记，记录着路上遇到的人和他们的故事。有些温暖，有些悲伤，有些只是平凡的瞬间。</p>
+            <p>如果你也在路上，或许我们会在某个路口相遇。</p>
+        </div>
+    </section>
+    
+    <footer class="site-footer">
+        <p>《树言·旅记》· 始于2026年 · 故事仍在继续</p>
+    </footer>
+    
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 导航链接点击效果
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 这里可以添加页面切换逻辑
+                    alert('页面切换功能开发中...');
+                });
+            });
+            
+            // 故事卡片悬停效果
+            const storyCards = document.querySelectorAll('.story-card');
+            storyCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // 模拟加载更多故事
+            const readMoreLinks = document.querySelectorAll('.read-more');
+            readMoreLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('完整故事页面开发中...');

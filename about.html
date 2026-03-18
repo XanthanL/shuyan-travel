@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于树言 - 树言·旅记</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 关于页面特有样式 */
+        .about-page {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-hero {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--color-light-earth);
+        }
+        
+        .about-name {
+            font-size: 3rem;
+            font-weight: normal;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-xs);
+            letter-spacing: 0.1em;
+        }
+        
+        .about-title {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            color: var(--color-earth);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .about-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--color-accent);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto var(--space-lg);
+            padding: var(--space-md);
+            border-left: 3px solid var(--color-accent);
+            background: rgba(121, 85, 72, 0.05);
+        }
+        
+        .about-section {
+            margin-bottom: var(--space-xl);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: normal;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-xs);
+            border-bottom: 1px solid var(--color-light-earth);
+        }
+        
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-ink);
+        }
+        
+        .section-content p {
+            margin-bottom: var(--space-md);
+        }
+        
+        .section-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: var(--space-lg);
+            margin: var(--space-lg) 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--color-light-earth);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--color-light-earth);
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            left: -var(--space-lg);
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--color-accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .timeline-content {
+            padding-left: var(--space-md);
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .timeline-description {
+            font-size: 1rem;
+            color: var(--color-ink);
+            line-height: 1.6;
+        }
+        
+        .values-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        
+        .value-item {
+            background: rgba(255, 248, 225, 0.5);
+            border: 1px solid var(--color-light-earth);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            transition: transform var(--transition-normal);
+        }
+        
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 2rem;
+            margin-bottom: var(--space-sm);
+            color: var(--color-accent);
+        }
+        
+        .value-title {
+            font-size: 1.2rem;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .value-description {
+            font-size: 1rem;
+            color: var(--color-ink);
+            line-height: 1.6;
+        }
+        
+        .gear-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        
+        .gear-item {
+            text-align: center;
+            padding: var(--space-md);
+        }
+        
+        .gear-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-sm);
+            color: var(--color-earth);
+        }
+        
+        .gear-name {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .gear-description {
+            font-size: 0.9rem;
+            color: var(--color-earth);
+            line-height: 1.5;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+        
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            height: 200px;
+            background: var(--color-light-earth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-earth);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .photo-placeholder {
+            text-align: center;
+            padding: var(--space-md);
+        }
+        
+        .photo-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-sm);
+            opacity: 0.3;
+        }
+        
+        .future-plans {
+            background: rgba(255, 248, 225, 0.5);
+            border: 1px solid var(--color-light-earth);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+        }
+        
+        .plans-title {
+            font-size: 1.5rem;
+            color: var(--color-dark-earth);
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+        
+        .plans-list {
+            list-style: none;
+        }
+        
+        .plans-list li {
+            margin-bottom: var(--space-sm);
+            padding-left: var(--space-md);
+            position: relative;
+        }
+        
+        .plans-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+        
+        .plans-list li:last-child {
+            margin-bottom: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .about-name {
+                font-size: 2.5rem;
+            }
+            
+            .values-list,
+            .gear-list,
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                padding-left: var(--space-md);
+            }
+            
+            .timeline-year {
+                left: -var(--space-md);
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <h1 class="site-title">树言·旅记</h1>
+        <p class="site-subtitle">路上的故事，时间的痕迹</p>
+    </header>
+    
+    <nav class="site-nav">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link" data-page="时间线">时间线</a>
+            <a href="map.html" class="nav-link" data-page="旅行地图">旅行地图</a>
+            <a href="about.html" class="nav-link active" data-page="关于树言">关于树言</a>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="搜索内容..." class="search-input">
+            <button id="search-button" class="search-button">🔍</button>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <div class="about-page">
+            <!-- 英雄区域 -->
+            <div class="about-hero">
+                <h2 class="about-name">树言</h2>
+                <p class="about-title">徒步旅行者 · 故事收集者</p>
+                <div class="about-quote">
+                    "我不是在寻找目的地，我是在寻找路上的人。每一个相遇都是一个故事，每一个故事都是一次重生。"
+                </div>
+            </div>
+            
+            <!-- 我的故事 -->
+            <section class="about-section">
+                <h3 class="section-title">我的故事</h3>
+                <div class="section-content">
+                    <p>我是树言，一个在路上的人。这个名字没有特别的含义，就像我的人生一样，简单而真实。</p>
+                    <p>三年前，我辞去了城市里的工作，背起行囊开始了徒步旅行。没有详细的计划，没有明确的目的地，只是随着心意行走。从东到西，从南到北，我用脚步丈量这片土地。</p>
+                    <p>很多人问我为什么选择这样的生活。我没有宏大的理由，只是觉得人生短暂，我想用自己喜欢的方式度过。在路上，我遇到了各种各样的人，听到了各种各样的故事。这些相遇让我明白，每个人的生活都是一部独特的小说。</p>
+                    <p>这个网站就是我的旅行日记。记录着路上的风景，更记录着路上的人。有些故事温暖，有些故事悲伤，有些故事只是平凡的瞬间。但每一个故事都值得被记住。</p>
+                </div>
+            </section>
+            
+            <!-- 时间线 -->
+            <section class="about-section">
+                <h3 class="section-title">人生旅程</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2018</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">大学毕业 · 迷茫</h4>
+                            <p class="timeline-description">
+                                从浙江大学中文系毕业。在杭州一家出版社做编辑，每天处理文字，却感觉离真实的文字越来越远。开始利用周末在周边徒步。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">第一次长途 · 川西</h4>
+                            <p class="timeline-description">
+                                辞职，用积蓄开始了第一次长途徒步。从成都出发，走川西小环线。在四姑娘山遇到了登山向导老陈，学会了基本的野外生存技能。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">云南深度 · 寻找</h4>
+                            <p class="timeline-description">
+                                在云南待了整整一年。从昆明到丽江，从大理到香格里拉。在沙溪古镇的咖啡馆打工三个月，学会了做手冲咖啡，也学会了倾听陌生人的故事。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2021</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">西藏朝圣 · 净化</h4>
+                            <p class="timeline-description">
+                                沿着滇藏线进入西藏。在拉萨待了两个月，每天去大昭寺晒太阳。结识了来自各地的朝圣者，开始用藏文记录所见所闻。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2022</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">新疆探险 · 辽阔</h4>
+                            <p class="timeline-description">
+                                穿越新疆南北。在喀什的老城迷路，在塔克拉玛干边缘露营，在禾木村过冬。学会了维吾尔语的基本对话，收集了十二个民族的故事。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">西北环线 · 沉淀</h4>
+                            <p class="timeline-description">
+                                走完丝绸之路的国内段。从西安到敦煌，从嘉峪关到乌鲁木齐。在莫高窟做了两个月志愿者，帮助整理文献，也听了无数个壁画背后的故事。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">东北边境 · 寒冷</h4>
+                            <p class="timeline-description">
+                                沿着中俄、中朝边境行走。在漠河看到了极光，在长白山天池边思考人生。在哈尔滨的冬天，遇到了一个俄罗斯老人，听他讲述家族百年的迁徙史。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">西南秘境 · 回归</h4>
+                            <p class="timeline-description">
+                                回到西南地区。深入贵州的苗寨、广西的壮族村落、湘西的土家族聚居区。开始系统整理七年的旅行笔记，决定创建这个网站。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-content">
+                            <h4 class="timeline-title">现在 · 沉淀</h4>
+                            <p class="timeline-description">
+                                在云南雨崩村停留，整理八年的旅行笔记。网站上线，开始分享旅途中的故事。同时规划着新的旅程：青藏线、海岸线，还有更多等待探索的地方。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 我的价值观 -->
+            <section class="about-section">
+                <h3 class="section-title">我的价值观</h3>
+                <div class="values-list">
+                    <div class="value-item">
+                        <div class="value-icon">👣</div>
+                        <h4 class="value-title">慢行</h4>
+                        <p class="value-description">
+                            真正的旅行不是到达，而是体验。我选择徒步，因为只有慢下来，才能看到路上的细节，听到风中的故事。
+                        </p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <div class="value-icon">👂</div>
+                        <h4 class="value-title">倾听</h4>
+                        <p class="value-description">
+                            每个人都有故事，但很少有人愿意倾听。我最大的财富就是听到了那么多真实的人生，这些故事让我成长。
+                        </p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <div class="value-icon">📝</div>
+                        <h4 class="value-title">记录</h4>
+                        <p class="value-description">
+                            记忆会模糊，但文字不会。我记录不是为了发表，而是为了不忘记。每一个故事都值得被记住，每一个人都值得被看见。
+                        </p>
+                    </div>
+                    
+                    <div class="value-item">
+                        <div class="value-icon">🌱</div>
+                        <h4 class="value-title">简单</h4>
+                        <p class="value-description">
+                            生活可以很简单。一个背包，一双鞋，就能走很远。物质越少，心灵越自由。这是我三年旅行最大的感悟。
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 我的装备 -->
+            <section class="about-section">
+                <h3 class="section-title">我的装备</h3>
+                <div class="gear-list">
+                    <div class="gear-item">
+                        <div class="gear-icon">🎒</div>
+                        <h4 class="gear-name">背包</h4>
+                        <p class="gear-description">65升登山包，用了三年，修补过三次，装得下整个世界。</p>
+                    </div>
+                    
+                    <div class="gear-item">
+                        <div class="gear-icon">👟</div>
+                        <h4 class="gear-name">鞋子</h4>
+                        <p class="gear-description">第三双徒步鞋，已经走了五千公里，还能再走五千。</p>
+                    </div>
+                    
+                    <div class="gear-item">
+                        <div class="gear-icon">📓</div>
+                        <h4 class="gear-name">笔记本</h4>
+                        <p class="gear-description">牛皮封面笔记本，写满了故事，浸过雨水，晒过阳光。</p>
+                    </div>
+                    
+                    <div class="gear-item">
+                        <div class="gear-icon">📱</div>
+                        <h4 class="gear-name">手机</h4>
+                        <p class="gear-description">唯一的电子产品，用来拍照、记录、偶尔联系家人。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 摄影作品 -->
+            <section class="about-section">
+                <h3 class="section-title">旅途瞬间</h3>
+                <div class="photo-gallery">
+                    <div class="photo-item">
+                        <div class="photo-placeholder">
+                            <div class="photo-icon">🏔️</div>
+                            <div>梅里雪山</div>
+                        </div>
+                    </div>
+                    
+                    <div class="photo-item">
+                        <div class="photo-placeholder">
+                            <div class="photo-icon">🏜️</div>
+                            <div>敦煌沙漠</div>
+                        </div>
+                    </div>
+                    
+                    <div class="photo-item">
+                        <div class="photo-placeholder">
+                            <div class="photo-icon">🌲</div>
+                            <div>喀纳斯秋色</div>
+                        </div>
+                    </div>
+                    
+                    <div class="photo-item">
+                        <div class="photo-placeholder">
+                            <div class="photo-icon">🐎</div>
+                            <div>草原牧马</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="section-content" style="text-align: center; font-style: italic; color: var(--color-earth);">
+                    真正的美景在眼睛里，在心里。照片只是提醒，记忆才是永恒。
+                </p>
+            </section>
+            
+            <!-- 未来计划 -->
+            <div class="future-plans">
+                <h3 class="plans-title">下一步计划</h3>
+                <ul class="plans-list">
+                    <li>完成青藏线的徒步，从青海到西藏</li>
+                    <li>探访云南的少数民族村落，记录传统文化</li>
+                    <li>沿着海岸线从广东走到辽宁</li>
+                    <li>整理出版第一本旅行故事集</li>
+                    <li>继续更新这个网站，分享更多故事</li>
+                </ul>
+            </div>
+            
+            <!-- 最后的话 -->
+            <section class="about-section">
+                <h3 class="section-title">最后的话</h3>
+                <div class="section-content">
+                    <p>我不知道这条路会走多久，也不知道会走到哪里。但我知道，只要还在路上，就还有故事。</p>
+                    <p>这个网站是我和世界的对话，也是我和自己的对话。如果你也在路上，或者曾经在路上，或许你能在这里找到共鸣。</p>
+                    <p>生活有很多种方式，旅行只是其中一种。重要的是找到适合自己的节奏，然后坚持下去。</p>
+                    <p style="text-align: center; font-size:
