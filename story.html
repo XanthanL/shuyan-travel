@@ -31,15 +31,17 @@
         
         .story-header {
             margin-bottom: var(--space-xxl);
+            text-align: center;
         }
         
         .story-meta {
             display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-md);
+            justify-content: center;
+            gap: var(--space-lg);
             margin-bottom: var(--space-md);
             color: var(--color-earth);
             font-size: 0.95rem;
+            font-family: var(--font-sans);
         }
         
         .story-meta-item {
@@ -49,7 +51,7 @@
         }
         
         .story-title {
-            font-size: 2.8rem;
+            font-size: 3rem;
             line-height: 1.2;
             margin: 0 0 var(--space-md) 0;
             color: var(--color-dark-earth);
@@ -64,70 +66,77 @@
             font-style: italic;
         }
         
-        .story-hero-image {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            border-radius: var(--radius-md);
-            margin-bottom: var(--space-xl);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        }
-        
         .story-content {
-            line-height: 2.0;
+            line-height: 2.2;
             font-size: 1.15rem;
             color: var(--color-ink);
+            text-align: justify;
         }
         
         .story-content p {
             margin-bottom: var(--space-xl);
-            text-align: justify;
         }
-        
-        .story-content h2 {
-            font-size: 1.8rem;
-            margin: var(--space-xxl) 0 var(--space-lg) 0;
+
+        /* 首字下沉 */
+        .drop-cap::first-letter {
+            float: left;
+            font-size: 3.5rem;
+            line-height: 1;
+            padding-top: 4px;
+            padding-right: 8px;
+            padding-left: 3px;
             color: var(--color-dark-earth);
-            border-bottom: 2px solid var(--color-light-earth);
-            padding-bottom: var(--space-sm);
+            font-family: var(--font-serif);
         }
         
         .story-content blockquote {
-            border-left: 4px solid var(--color-accent);
-            padding: var(--space-sm) var(--space-lg);
-            margin: var(--space-xxl) 0;
+            border-top: 1px solid var(--color-light-earth);
+            border-bottom: 1px solid var(--color-light-earth);
+            padding: var(--space-lg) 0;
+            margin: var(--space-xxl) auto;
+            max-width: 90%;
             font-style: italic;
             color: var(--color-earth);
             font-size: 1.25rem;
+            text-align: center;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .story-content blockquote::before {
+            content: '“';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: var(--color-light-earth);
+            background: var(--color-paper);
+            padding: 0 15px;
+        }
+        
+        .travel-note {
             background-color: rgba(139, 115, 85, 0.05);
-        }
-        
-        .story-content img {
-            max-width: 100%;
-            height: auto;
+            border: 1px dashed var(--color-earth);
+            padding: var(--space-lg);
+            margin: var(--space-xxl) 0;
             border-radius: var(--radius-sm);
-            margin: var(--space-xl) 0;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
         }
-        
-        .story-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: var(--space-xxl) 0 var(--space-xl);
-            padding-top: var(--space-xl);
-            border-top: 1px solid var(--color-light-earth);
+
+        .travel-note h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--color-dark-earth);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        
-        .story-tag {
+
+        .travel-note p {
+            margin-bottom: 0;
+            font-size: 1rem;
+            font-style: italic;
             color: var(--color-earth);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-        
-        .story-tag:hover {
-            color: var(--color-accent);
         }
         
         .story-navigation {
@@ -170,19 +179,6 @@
             font-weight: 500;
             margin-top: 4px;
         }
-
-        .share-button {
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            transition: all 0.2s;
-            color: var(--color-earth);
-        }
-
-        .share-button:hover {
-            background-color: var(--color-light-earth);
-            color: var(--color-dark-earth);
-        }
     </style>
 </head>
 <body>
@@ -195,7 +191,6 @@
 
         <nav class="site-nav">
             <a href="index.html" class="nav-link">时间线</a>
-            <a href="search.html" class="nav-link">搜索故事</a>
             <a href="map.html" class="nav-link">旅行地图</a>
             <a href="about.html" class="nav-link">关于树言</a>
         </nav>
@@ -203,38 +198,22 @@
         <!-- 详情容器 -->
         <div class="story-detail-container">
             <a href="index.html" class="story-back-link">
-                <i class="fas fa-arrow-left"></i> 返回故事列表
+                <i class="fas fa-arrow-left"></i> 返回时间线
             </a>
             
             <header class="story-header">
                 <div class="story-meta">
                     <span class="story-meta-item"><i class="far fa-calendar"></i> <span id="story-date">加载中...</span></span>
                     <span class="story-meta-item"><i class="fas fa-map-marker-alt"></i> <span id="story-location">加载中...</span></span>
-                    <span class="story-meta-item"><i class="far fa-clock"></i> <span id="story-read-time">加载中...</span></span>
-                    <span class="story-meta-item"><i class="far fa-heart"></i> <span id="story-mood">加载中...</span></span>
                 </div>
                 
                 <h1 class="story-title" id="story-title">正在开启旅程...</h1>
                 <p class="story-subtitle" id="story-subtitle"></p>
-                
-                <img src="" alt="" class="story-hero-image" id="story-hero-image">
             </header>
             
             <article class="story-content" id="story-content">
                 <p style="text-align: center; padding: 40px;">正在翻开日记本...</p>
             </article>
-            
-            <div class="story-tags" id="story-tags"></div>
-            
-            <!-- 分享 -->
-            <div style="margin: 40px 0; text-align: center;">
-                <p style="font-size: 0.9rem; color: var(--color-earth); margin-bottom: 15px;">分享这段记忆</p>
-                <div style="display: flex; justify-content: center; gap: 20px;">
-                    <i class="fab fa-weixin share-button wechat"></i>
-                    <i class="fab fa-weibo share-button weibo"></i>
-                    <i class="fas fa-link share-button link"></i>
-                </div>
-            </div>
 
             <nav class="story-navigation">
                 <a href="#" class="story-nav-link prev" id="prev-story" style="display: none;">
