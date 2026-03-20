@@ -8,47 +8,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header class="site-header">
-        <h1 class="site-title">树言·旅记</h1>
-    </header>
-    
-    <nav class="site-nav">
-        <a href="index.html" class="nav-link active">时间线</a>
-        <a href="map.html" class="nav-link">旅行地图</a>
-        <a href="about.html" class="nav-link">关于树言</a>
-    </nav>
-    
-    <main class="main-content" id="stories-container">
-        <!-- 故事卡片将由 JavaScript 动态生成 -->
-        <div class="loading-placeholder text-center">
-            <p>正在打捞路上的故事...</p>
+    <div class="container">
+        <header class="site-header">
+            <h1 class="site-title">树言·旅记</h1>
+        </header>
+        
+        <nav class="site-nav">
+            <a href="index.html" class="nav-link active">时间线</a>
+            <a href="map.html" class="nav-link">旅行地图</a>
+            <a href="about.html" class="nav-link">关于树言</a>
+        </nav>
+        
+        <main class="main-content" id="stories-container">
+            <!-- 故事卡片将由 JavaScript 动态生成 -->
+            <div class="loading-placeholder text-center">
+                <p>正在打捞路上的故事...</p>
+            </div>
+        </main>
+        
+        <!-- 地图预览 -->
+        <div class="map-preview">
+            <div class="map-title">旅行足迹</div>
+            <div class="map-placeholder">
+                <a href="map.html" class="read-more" style="border: none;">
+                    <i class="fas fa-map-marked-alt"></i> 查看交互式旅行地图
+                </a>
+            </div>
         </div>
-    </main>
-    
-    <!-- 地图预览 -->
-    <div class="map-preview">
-        <div class="map-title">旅行足迹</div>
-        <div class="map-placeholder">
-            <a href="map.html" class="read-more" style="border: none;">
-                <i class="fas fa-map-marked-alt"></i> 查看交互式旅行地图
-            </a>
-        </div>
+        
+        <!-- 关于区域 -->
+        <section class="about-section">
+            <h2 class="about-title">关于树言</h2>
+            <div class="about-content">
+                <p>我是树言，一个在路上的人。</p>
+                <p>没有固定的住所，没有明确的计划，只是随着心意行走。用脚步丈量土地，用文字记录相遇。</p>
+                <p>这个网站是我的旅行日记，记录着路上遇到的人和他们的故事。有些温暖，有些悲伤，有些只是平凡的瞬间。</p>
+                <p>如果你也在路上，或许我们会在某个路口相遇。</p>
+            </div>
+        </section>
+        
+        <footer class="site-footer">
+            <p>© 2018-2026 树言·旅记 | 记录每一次出发</p>
+        </footer>
     </div>
-    
-    <!-- 关于区域 -->
-    <section class="about-section">
-        <h2 class="about-title">关于树言</h2>
-        <div class="about-content">
-            <p>我是树言，一个在路上的人。</p>
-            <p>没有固定的住所，没有明确的计划，只是随着心意行走。用脚步丈量土地，用文字记录相遇。</p>
-            <p>这个网站是我的旅行日记，记录着路上遇到的人和他们的故事。有些温暖，有些悲伤，有些只是平凡的瞬间。</p>
-            <p>如果你也在路上，或许我们会在某个路口相遇。</p>
-        </div>
-    </section>
-    
-    <footer class="site-footer">
-        <p>《树言·旅记》· 始于2026年 · 故事仍在继续</p>
-    </footer>
     
     <!-- 引入脚本 -->
     <script src="js/stories.js"></script>
