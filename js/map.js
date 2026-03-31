@@ -3,14 +3,14 @@
 
 /**
  * 逻辑路线：
- * 1. 北京 (2018)
- * 2. 哈尔滨 (2019)
- * 3. 敦煌 (2020)
- * 4. 喀什 (2021)
- * 5. 拉萨 (2022)
- * 6. 成都 (2023)
- * 7. 大理 (2024)
- * 8. 雨崩 (2025)
+ * 1. 北京 (2018) - 觉醒
+ * 2. 哈尔滨 (2019) - 凝固
+ * 3. 敦煌 (2020) - 熵增
+ * 4. 喀什 (2021) - 节奏
+ * 5. 拉萨 (2022) - 剥离
+ * 6. 成都 (2023) - 慢速
+ * 7. 大理 (2024) - 尊严
+ * 8. 雨崩 (2025) - 奖赏
  */
 const travelLocations = [
     {
@@ -20,7 +20,7 @@ const travelLocations = [
         lng: 116.4074,
         year: 2018,
         season: "春",
-        description: "第一次独自旅行，故宫的红墙黄瓦让我感受到历史的厚重。",
+        description: "清晨六点，红墙下散发着几百年老楠木被风干的朽气。那是扫帚划过青砖的节拍，也是我旧生活的终点。",
         color: "#8B7355",
         storiesList: [{ title: "故宫的清晨", date: "2018.04.15", storyId: "1" }]
     },
@@ -31,7 +31,7 @@ const travelLocations = [
         lng: 126.5340,
         year: 2019,
         season: "冬",
-        description: "在零下三十度的松花江上，体验极寒带给生命的肃静。",
+        description: "在零下三十度的江面上，吸入的每一口空气都像碎玻璃渣子。烧刀子在胃里炸开，睫毛上的霜正变得沉重。",
         color: "#795548",
         storiesList: [{ title: "极寒之地的凝固", date: "2019.12.10", storyId: "2" }]
     },
@@ -42,7 +42,7 @@ const travelLocations = [
         lng: 94.6618,
         year: 2020,
         season: "秋",
-        description: "莫高窟的壁画与鸣沙山的风，诉说着跨越千年的时光。",
+        description: "壁画每天都在不可逆转地死亡。老李手里的针头很稳，他在这片荒原深处，做着一笔跟熵增对抗的赔本生意。",
         color: "#A1887F",
         storiesList: [{ title: "戈壁里的千年一瞬", date: "2020.09.22", storyId: "3" }]
     },
@@ -53,7 +53,7 @@ const travelLocations = [
         lng: 75.9937,
         year: 2021,
         season: "夏",
-        description: "百年茶馆里的氤氲，是帕米尔高原脚下最温暖的烟火。",
+        description: "时间是用铜壶和铁锤计算的。只要琴声不断，打铁的节奏不歇，帕米尔高原脚下的心跳就不会断。",
         color: "#5D4037",
         storiesList: [{ title: "喀什老城的茶馆", date: "2021.07.12", storyId: "4" }]
     },
@@ -64,7 +64,7 @@ const travelLocations = [
         lng: 91.1172,
         year: 2022,
         season: "夏",
-        description: "在大昭寺的暖阳里，听见内心深处最真实的声音。",
+        description: "在最缺氧的地方，人活得最像活人。剥离了形而上的神圣，信仰是磕响青石板的汗水，和一粒带有体温的奶渣。",
         color: "#8B7355",
         storiesList: [{ title: "众神守望的高原", date: "2022.08.05", storyId: "5" }]
     },
@@ -75,7 +75,7 @@ const travelLocations = [
         lng: 104.0668,
         year: 2023,
         season: "春",
-        description: "在宽窄巷子的竹椅上，学会如何与这个世界慢速相处。",
+        description: "竹椅在青瓦下发出吱呀声，盖碗茶里的叶片浮沉。在这里，慢速不再是一种罪过，而是一种与世界相处的尊严。",
         color: "#5D4037",
         storiesList: [{ title: "宽窄巷子的慢生活", date: "2023.03.11", storyId: "6" }]
     },
@@ -86,7 +86,7 @@ const travelLocations = [
         lng: 100.2676,
         year: 2024,
         season: "秋",
-        description: "洱海边的日出，是写给时光最美的情书。",
+        description: "马铃声消失在柏油路尽头。嚼着那块咸得要命的风干肉，我才意识到，被速度吃掉的不仅仅是马帮，还有人的骨气。",
         color: "#8B7355",
         storiesList: [{ title: "洱海边的日出", date: "2024.09.10", storyId: "7" }]
     },
@@ -97,7 +97,7 @@ const travelLocations = [
         lng: 98.8687,
         year: 2025,
         season: "冬",
-        description: "梅里雪山下的寂静，是给每一个徒步者灵魂的奖赏。",
+        description: "梅里雪山下的寂静是带有重量的。只有双脚被砂石反复磨砺出的痛觉，才能抵消在这片神迹面前的虚浮感。",
         color: "#A1887F",
         storiesList: [{ title: "雨崩：离神最近的地方", date: "2025.01.12", storyId: "8" }]
     }
