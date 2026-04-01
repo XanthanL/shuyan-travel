@@ -35,6 +35,16 @@ function updateStoryContent() {
         });
     }
 
+    // 处理旁注点击交互 (移动端)
+    contentContainer.querySelectorAll('.has-note').forEach(note => {
+        note.addEventListener('click', function(e) {
+            if (window.innerWidth <= 1200) {
+                e.preventDefault();
+                this.classList.toggle('active');
+            }
+        });
+    });
+
     // 更新导航... (保持不变)
     if (window.getAdjacentStories) {
         const adjacent = window.getAdjacentStories(storyId);

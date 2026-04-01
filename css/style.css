@@ -207,6 +207,90 @@ body {
     text-align: justify;
 }
 
+/* ===== Marginalia (文学旁注) ===== */
+.has-note {
+    position: relative;
+    border-bottom: 1px dotted var(--color-light-earth);
+    cursor: help;
+    color: var(--color-dark-earth);
+    transition: all 0.3s;
+    display: inline; /* 确保不影响行内排版 */
+}
+
+.has-note:hover {
+    background-color: rgba(139, 115, 85, 0.08);
+}
+
+.side-note-content {
+    position: absolute;
+    left: calc(100% + 50px); /* 桌面端右移 */
+    top: 0;
+    width: 260px;
+    font-size: 0.95rem; /* 字号微调 */
+    line-height: 1.6;
+    color: var(--color-ink);
+    background-color: var(--color-paper); /* 使用纸张背景色 */
+    box-shadow: 10px 10px 30px rgba(44, 24, 16, 0.05); /* 极轻微的阴影 */
+    font-style: italic;
+    font-family: var(--font-serif);
+    font-weight: normal;
+    text-align: left;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(15px);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: block;
+    border-left: 2px solid var(--color-dark-earth);
+    padding: 15px 20px;
+    z-index: 200;
+}
+
+/* 仅在悬停时显现 */
+.has-note:hover .side-note-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* 布局调整：为大屏幕侧注预留空间 */
+@media (min-width: 1400px) {
+    .story-detail-container, .about-page {
+        margin-left: calc(50% - 630px); /* 进一步左偏，留出 260px+ 空间 */
+        max-width: 750px;
+    }
+}
+
+/* 响应式：中等屏幕和移动端处理 */
+@media (max-width: 1399px) {
+    .has-note {
+        border-bottom-style: dashed;
+    }
+    
+    .side-note-content {
+        position: relative;
+        left: 0;
+        width: 100%;
+        margin: 15px 0 25px 0;
+        display: none; 
+        background: rgba(139, 115, 85, 0.07);
+        padding: 15px 20px;
+        border-left: 3px solid var(--color-dark-earth);
+        border-right: none;
+        border-top: none;
+        border-bottom: none;
+        transform: none;
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        box-shadow: none;
+    }
+    
+    .has-note.active .side-note-content {
+        display: block;
+    }
+}
+
 /* ===== Reading Progress Bar ===== */
 .progress-container {
     position: fixed;
@@ -265,6 +349,13 @@ body {
     transform: translateX(-50%);
     color: var(--color-border);
     font-family: serif;
+}
+
+/* 排除旅行笔记部分，使其直接可见 */
+.travel-note, .travel-note h4, .travel-note p {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
 }
 
 /* ===== Story Detail Page Specifics ===== */

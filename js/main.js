@@ -42,9 +42,17 @@ function initScrollReveal() {
         });
     }, observerOptions);
 
-    // 初始页面可能已经存在的段落（如 About 页面）
-    document.querySelectorAll('.story-excerpt, .story-content p, .about-content p').forEach(el => {
-        revealObserver.observe(el);
+    // 扫描并监测所有需要淡入的元素
+    const elementsToReveal = document.querySelectorAll('.story-excerpt, .story-content p, .story-content blockquote, .about-content p, .section-content p, .about-quote, .final-words p');
+
+    elementsToReveal.forEach(el => {
+        // 如果元素已经在视口中，立即显示
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) {
+            el.classList.add('revealed');
+        } else {
+            revealObserver.observe(el);
+        }
     });
 
     window.revealObserver = revealObserver; // 供动态生成内容调用
