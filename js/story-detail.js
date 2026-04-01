@@ -10,17 +10,32 @@ function getStoryIdFromURL() {
 function updateStoryContent() {
     const storyId = getStoryIdFromURL();
     const story = window.getStory ? window.getStory(storyId) : null;
-    
+
     if (!story) return;
-    
+
     // 更新基础信息
     document.getElementById('story-date').textContent = story.date;
     document.getElementById('story-location').textContent = story.location;
     document.getElementById('story-title').textContent = story.title;
     document.getElementById('story-subtitle').textContent = story.subtitle;
-    document.getElementById('story-content').innerHTML = story.content;
-    
-    // 更新导航
+
+    const contentContainer = document.getElementById('story-content');
+    contentContainer.innerHTML = story.content;
+
+    // 首字下沉优化：给第一个段落加上 drop-cap 类
+    const firstP = contentContainer.querySelector('p');
+    if (firstP) {
+        firstP.classList.add('drop-cap');
+    }
+
+    // 触发段落淡入监听
+    if (window.revealObserver) {
+        contentContainer.querySelectorAll('p, blockquote').forEach(el => {
+            window.revealObserver.observe(el);
+        });
+    }
+
+    // 更新导航... (保持不变)
     if (window.getAdjacentStories) {
         const adjacent = window.getAdjacentStories(storyId);
         const prevLink = document.getElementById('prev-story');

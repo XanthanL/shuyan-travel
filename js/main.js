@@ -4,14 +4,56 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     initPageTransitions();
+    initProgressBar();
     if (document.getElementById('stories-container')) {
         setTimeout(loadStories, 100);
     }
+    initScrollReveal();
 });
+
+function initProgressBar() {
+    const progressContainer = document.createElement('div');
+    progressContainer.className = 'progress-container';
+    const progressBar = document.createElement('div');
+    progressBar.className = 'progress-bar';
+    progressContainer.appendChild(progressBar);
+    document.body.prepend(progressContainer);
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        progressBar.style.width = scrolled + "%";
+    });
+}
+
+function initScrollReveal() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // 初始页面可能已经存在的段落（如 About 页面）
+    document.querySelectorAll('.story-excerpt, .story-content p, .about-content p').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    window.revealObserver = revealObserver; // 供动态生成内容调用
+}
 
 function loadStories() {
     if (window.getAllStories) {
-        renderStories(window.getAllStories());
+        const stories = window.getAllStories();
+        renderStories(stories);
     }
 }
 
@@ -26,22 +68,24 @@ function renderStories(stories) {
     
     container.innerHTML = '';
     stories.forEach((story, index) => {
-        container.appendChild(createStoryCard(story));
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const index = Array.from(document.querySelectorAll('.story-card')).indexOf(entry.target);
+        const card = createStoryCard(story);
+        container.appendChild(card);
+        
+        // 监测卡片整体
+        const cardObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
                 setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 100); 
-                observer.unobserve(entry.target);
+                    card.classList.add('visible');
+                    // 监测卡片内的段落
+                    card.querySelectorAll('.story-excerpt, .story-card-title, .story-card-subtitle').forEach(el => {
+                        el.classList.add('revealed');
+                    });
+                }, index * 150);
+                cardObserver.unobserve(card);
             }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.story-card').forEach(card => observer.observe(card));
+        }, { threshold: 0.1 });
+        cardObserver.observe(card);
+    });
 }
 
 function createStoryCard(story) {
