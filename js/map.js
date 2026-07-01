@@ -4,13 +4,16 @@
 /**
  * 逻辑路线：
  * 1. 北京 (2018) - 觉醒
- * 2. 哈尔滨 (2019) - 凝固
- * 3. 敦煌 (2020) - 熵增
- * 4. 喀什 (2021) - 节奏
- * 5. 拉萨 (2022) - 剥离
- * 6. 成都 (2023) - 慢速
- * 7. 大理 (2024) - 尊严
- * 8. 雨崩 (2025) - 奖赏
+ * 2. 大兴安岭 (2019.11) - 迷雾
+ * 3. 哈尔滨 (2019.12) - 凝固
+ * 4. 敦煌 (2020.09) - 熵增
+ * 5. 张掖荒村 (2020.10) - 共温
+ * 6. 喀什 (2021) - 节奏
+ * 7. 拉萨 (2022) - 剥离
+ * 8. 成都 (2023) - 慢速
+ * 9. 苍山 (2024.05) - 马帮
+ * 10. 大理 (2024.09) - 节律
+ * 11. 雨崩 (2025) - 奖赏
  */
 const travelLocations = [
     {
@@ -26,6 +29,17 @@ const travelLocations = [
     },
     {
         id: 2,
+        name: "大兴安岭",
+        lat: 50.7833,
+        lng: 124.1167,
+        year: 2019,
+        season: "冬",
+        description: "在零下三十度的密林里，白桦树桩在手电光里像张脸。有些东西，是真的不希望被人类定义。",
+        color: "#5D4037",
+        storiesList: [{ title: "消失的界碑：林子里的眼睛", date: "2019.11.20", storyId: "2" }]
+    },
+    {
+        id: 3,
         name: "哈尔滨",
         lat: 45.8038,
         lng: 126.5340,
@@ -33,10 +47,10 @@ const travelLocations = [
         season: "冬",
         description: "在零下三十度的江面上，吸入的每一口空气都像碎玻璃渣子。烧刀子在胃里炸开，睫毛上的霜正变得沉重。",
         color: "#795548",
-        storiesList: [{ title: "极寒之地的凝固", date: "2019.12.10", storyId: "2" }]
+        storiesList: [{ title: "极寒之地的凝固", date: "2019.12.10", storyId: "3" }]
     },
     {
-        id: 3,
+        id: 4,
         name: "敦煌",
         lat: 40.1130,
         lng: 94.6618,
@@ -44,10 +58,21 @@ const travelLocations = [
         season: "秋",
         description: "壁画每天都在不可逆转地死亡。老李手里的针头很稳，他在这片荒原深处，做着一笔跟熵增对抗的赔本生意。",
         color: "#A1887F",
-        storiesList: [{ title: "戈壁里的千年一瞬", date: "2020.09.22", storyId: "3" }]
+        storiesList: [{ title: "戈壁里的千年一瞬", date: "2020.09.22", storyId: "4" }]
     },
     {
-        id: 4,
+        id: 5,
+        name: "张掖",
+        lat: 38.9300,
+        lng: 100.4500,
+        year: 2020,
+        season: "秋",
+        description: "在生理性失温面前，阶级共情是唯一的物理热源。那张带膻味的塑料布和辣嗓子的姜汤，砸碎了关于旅行的伪善想象。",
+        color: "#8B7355",
+        storiesList: [{ title: "河西走廊：那张带膻味的塑料布", date: "2020.10.05", storyId: "5" }]
+    },
+    {
+        id: 6,
         name: "喀什",
         lat: 39.4677,
         lng: 75.9937,
@@ -55,10 +80,10 @@ const travelLocations = [
         season: "夏",
         description: "时间是用铜壶和铁锤计算的。只要琴声不断，打铁的节奏不歇，帕米尔高原脚下的心跳就不会断。",
         color: "#5D4037",
-        storiesList: [{ title: "喀什老城的茶馆", date: "2021.07.12", storyId: "4" }]
+        storiesList: [{ title: "喀什老城的茶馆", date: "2021.07.12", storyId: "6" }]
     },
     {
-        id: 5,
+        id: 7,
         name: "拉萨",
         lat: 29.6469,
         lng: 91.1172,
@@ -66,10 +91,10 @@ const travelLocations = [
         season: "夏",
         description: "在最缺氧的地方，人活得最像活人。剥离了形而上的神圣，信仰是磕响青石板的汗水，和一粒带有体温的奶渣。",
         color: "#8B7355",
-        storiesList: [{ title: "众神守望的高原", date: "2022.08.05", storyId: "5" }]
+        storiesList: [{ title: "众神守望的高原", date: "2022.08.05", storyId: "7" }]
     },
     {
-        id: 6,
+        id: 8,
         name: "成都",
         lat: 30.5728,
         lng: 104.0668,
@@ -77,21 +102,32 @@ const travelLocations = [
         season: "春",
         description: "竹椅在青瓦下发出吱呀声，盖碗茶里的叶片浮沉。在这里，慢速不再是一种罪过，而是一种与世界相处的尊严。",
         color: "#5D4037",
-        storiesList: [{ title: "宽窄巷子的慢生活", date: "2023.03.11", storyId: "6" }]
+        storiesList: [{ title: "宽窄巷子：锦城的卸妆时刻", date: "2023.03.11", storyId: "8" }]
     },
     {
-        id: 7,
+        id: 9,
+        name: "苍山",
+        lat: 25.7000,
+        lng: 100.1500,
+        year: 2024,
+        season: "春",
+        description: "路通了，马闲了。这世上的事，快有快的道理，慢有慢的尊严。那块咸得要命的风干肉，是旅途中最实在的东西。",
+        color: "#A1887F",
+        storiesList: [{ title: "苍山：最后的马帮", date: "2024.05.20", storyId: "9" }]
+    },
+    {
+        id: 10,
         name: "大理",
         lat: 25.6065,
         lng: 100.2676,
         year: 2024,
         season: "秋",
-        description: "马铃声消失在柏油路尽头。嚼着那块咸得要命的风干肉，我才意识到，被速度吃掉的不仅仅是马帮，还有人的骨气。",
+        description: "当太阳这块烧红的重金属挤出山脊，人类的焦躁显得一文不值。自然有它的步子，我们只需要与之对齐。",
         color: "#8B7355",
-        storiesList: [{ title: "洱海边的日出", date: "2024.09.10", storyId: "7" }]
+        storiesList: [{ title: "洱海：晨光里的天体节律", date: "2024.09.10", storyId: "10" }]
     },
     {
-        id: 8,
+        id: 11,
         name: "雨崩",
         lat: 28.3934,
         lng: 98.8687,
@@ -99,7 +135,7 @@ const travelLocations = [
         season: "冬",
         description: "梅里雪山下的寂静是带有重量的。只有双脚被砂石反复磨砺出的痛觉，才能抵消在这片神迹面前的虚浮感。",
         color: "#A1887F",
-        storiesList: [{ title: "雨崩：离神最近的地方", date: "2025.01.12", storyId: "8" }]
+        storiesList: [{ title: "雨崩：物理极处的大地真形", date: "2025.01.12", storyId: "11" }]
     }
 ];
 
