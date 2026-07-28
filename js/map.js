@@ -148,7 +148,8 @@ function initTravelMap() {
     
     travelMap = L.map('travel-map', { zoomControl: false, attributionControl: false }).setView([35.8617, 104.1954], 4);
     
-    L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+    // 必须使用 https，GitHub Pages 下 http 瓦片会被浏览器作为混合内容拦截
+    L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
         subdomains: '1234', minZoom: 3, maxZoom: 12
     }).addTo(travelMap);
     
@@ -241,8 +242,9 @@ function focusLocation(locationId) {
 }
 
 function addTravelRoute() {
-    const routePoints = travelLocations.sort((a, b) => a.year - b.year).map(loc => [loc.lat, loc.lng]);
-    L.polyline(routePoints, { color: 'var(--color-accent)', weight: 2, opacity: 0.6, dashArray: '5, 10' }).addTo(travelMap);
+    // 拷贝后排序，避免修改原数组；SVG 属性不支持 CSS 变量，需使用具体色值
+    const routePoints = [...travelLocations].sort((a, b) => a.year - b.year).map(loc => [loc.lat, loc.lng]);
+    L.polyline(routePoints, { color: '#795548', weight: 2, opacity: 0.6, dashArray: '5, 10' }).addTo(travelMap);
 }
 
 function showAllLocations() {

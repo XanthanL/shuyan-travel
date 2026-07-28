@@ -341,7 +341,7 @@ body {
 }
 
 .story-content blockquote::before {
-    content: "鈥";
+    content: "❝";
     font-size: 4rem;
     position: absolute;
     top: -20px;

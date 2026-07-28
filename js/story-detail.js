@@ -11,7 +11,17 @@ function updateStoryContent() {
     const storyId = getStoryIdFromURL();
     const story = window.getStory ? window.getStory(storyId) : null;
 
-    if (!story) return;
+    if (!story) {
+        // 无效 ID 兑底，避免页面永远停在“加载中”
+        document.getElementById('story-title').textContent = '这一页被风吹走了';
+        document.getElementById('story-subtitle').textContent = '你要找的故事不在这里';
+        document.getElementById('story-date').textContent = '——';
+        document.getElementById('story-location').textContent = '未知之地';
+        document.getElementById('story-content').innerHTML =
+            '<p class="revealed" style="text-align:center;padding:40px;">或许它还在路上，或许它从未被写下。<a href="index.html" class="read-more">回到时间线</a></p>';
+        document.title = '故事不存在 - 树言·旅记';
+        return;
+    }
 
     // 更新基础信息
     document.getElementById('story-date').textContent = story.date;
@@ -72,12 +82,6 @@ function updateStoryContent() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    function checkStoriesLoaded() {
-        if (window.getStory) {
-            updateStoryContent();
-        } else {
-            setTimeout(checkStoriesLoaded, 100);
-        }
-    }
-    checkStoriesLoaded();
+    // stories.js 在本脚本之前同步加载，直接渲染即可
+    updateStoryContent();
 });

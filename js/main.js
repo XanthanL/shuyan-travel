@@ -5,8 +5,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     initPageTransitions();
     initProgressBar();
+    // stories.js 在 main.js 之前同步加载，无需延时等待
     if (document.getElementById('stories-container')) {
-        setTimeout(loadStories, 100);
+        loadStories();
     }
     initScrollReveal();
 });
@@ -19,12 +20,18 @@ function initProgressBar() {
     progressContainer.appendChild(progressBar);
     document.body.prepend(progressContainer);
 
+    // rAF 节流 + passive，避免滚动主线程卡顿
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        progressBar.style.width = scrolled + "%";
-    });
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            progressBar.style.width = height > 0 ? (winScroll / height) * 100 + '%' : '0%';
+            ticking = false;
+        });
+    }, { passive: true });
 }
 
 function initScrollReveal() {
