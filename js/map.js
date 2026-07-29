@@ -14,6 +14,14 @@
  * 9. 苍山 (2024.05) - 马帮
  * 10. 大理 (2024.09) - 节律
  * 11. 雨崩 (2025) - 奖赏
+ *
+ * —— 第二季「对角线」徒步（ID ≥ 12，弃车步行，西南 → 东北）——
+ * 12. 德钦 (2025.03) - 弃轮
+ * 13. 奔子栏 (2025.03) - 换水
+ * 14. 虎跳峡 (2025.03) - 江声
+ * 15. 石鼓 (2025.03) - 转弯
+ * 16. 丽江 (2025.03) - 冲街
+ * 17. 华坪 (2025.04) - 翻色
  */
 const travelLocations = [
     {
@@ -136,6 +144,72 @@ const travelLocations = [
         description: "梅里雪山下的寂静是带有重量的。只有双脚被砂石反复磨砺出的痛觉，才能抵消在这片神迹面前的虚浮感。",
         color: "#A1887F",
         storiesList: [{ title: "雨崩：物理极处的大地真形", date: "2025.01.12", storyId: "11" }]
+    },
+    {
+        id: 12,
+        name: "德钦",
+        lat: 28.4833,
+        lng: 98.9167,
+        year: 2025,
+        season: "春",
+        description: "出雨崩那天，我对停下的面包车摆了摆手。铝杖收进包底，换上一根杜鹃木杖——从这里起，不再上车。",
+        color: "#795548",
+        storiesList: [{ title: "德钦：把铝杖换成一根木头", date: "2025.03.05", storyId: "12" }]
+    },
+    {
+        id: 13,
+        name: "奔子栏",
+        lat: 28.1667,
+        lng: 99.2833,
+        year: 2025,
+        season: "春",
+        description: "翻过一道山梁，脚下的水换了姓。金沙江浑得像一江黄汤，不喧哗，力气却一分没少。",
+        color: "#8B7355",
+        storiesList: [{ title: "奔子栏：金沙江递来的第一碗浑水", date: "2025.03.10", storyId: "13" }]
+    },
+    {
+        id: 14,
+        name: "虎跳峡",
+        lat: 27.1783,
+        lng: 100.0839,
+        year: 2025,
+        season: "春",
+        description: "江在石头缝里发疯，发了几十万年。那声音先用耳朵听，再用胸口听，最后用脚底板听。",
+        color: "#5D4037",
+        storiesList: [{ title: "虎跳峡：一条江在石头缝里发疯", date: "2025.03.15", storyId: "14" }]
+    },
+    {
+        id: 15,
+        name: "石鼓",
+        lat: 26.8667,
+        lng: 99.9667,
+        year: 2025,
+        season: "春",
+        description: "长江在这里学会了转弯。我在油腻的桌面上摊开地图，用铅笔把一条斜线从石鼓拉到了鹤岗。",
+        color: "#A1887F",
+        storiesList: [{ title: "石鼓：长江在这里学会了转弯", date: "2025.03.20", storyId: "15" }]
+    },
+    {
+        id: 16,
+        name: "丽江",
+        lat: 26.8721,
+        lng: 100.2299,
+        year: 2025,
+        season: "春",
+        description: "白天的古城是一台开足马力的机器。凌晨四点，纳西阿婆用一渠雪水和一把扫帚，把它刷回了真身。",
+        color: "#795548",
+        storiesList: [{ title: "丽江：凌晨四点的古城", date: "2025.03.25", storyId: "16" }]
+    },
+    {
+        id: 17,
+        name: "华坪",
+        lat: 26.6290,
+        lng: 101.2660,
+        year: 2025,
+        season: "春",
+        description: "对角线上第一座煤城。挖煤的手和剪芒果枝的手是同一双，一个朝地底要黑的，一个朝天上要绿的。",
+        color: "#8B7355",
+        storiesList: [{ title: "华坪：煤黑的地里长出金黄", date: "2025.04.08", storyId: "17" }]
     }
 ];
 
@@ -242,9 +316,21 @@ function focusLocation(locationId) {
 }
 
 function addTravelRoute() {
-    // 拷贝后排序，避免修改原数组；SVG 属性不支持 CSS 变量，需使用具体色值
-    const routePoints = [...travelLocations].sort((a, b) => a.year - b.year).map(loc => [loc.lat, loc.lng]);
-    L.polyline(routePoints, { color: '#795548', weight: 2, opacity: 0.6, dashArray: '5, 10' }).addTo(travelMap);
+    // 拷贝后排序，避免修改原数组；同年份的点保持数组书写顺序（稳定排序）
+    // SVG 属性不支持 CSS 变量，需使用具体色值
+    const sorted = [...travelLocations].sort((a, b) => a.year - b.year);
+    const vehiclePoints = sorted.filter(loc => loc.id <= 11).map(loc => [loc.lat, loc.lng]);
+    const walkPoints = sorted.filter(loc => loc.id >= 12).map(loc => [loc.lat, loc.lng]);
+
+    // 第一季（ID 1-11）：乘车/飞行轨迹，虚线
+    L.polyline(vehiclePoints, { color: '#795548', weight: 2, opacity: 0.5, dashArray: '5, 10' }).addTo(travelMap);
+
+    // 第二季（ID ≥ 12）：徒步对角线，实线，从雨崩（第一季终点）起笔
+    if (walkPoints.length) {
+        const pivot = travelLocations.find(loc => loc.id === 11);
+        const walkLine = pivot ? [[pivot.lat, pivot.lng], ...walkPoints] : walkPoints;
+        L.polyline(walkLine, { color: '#BF360C', weight: 3, opacity: 0.85 }).addTo(travelMap);
+    }
 }
 
 function showAllLocations() {

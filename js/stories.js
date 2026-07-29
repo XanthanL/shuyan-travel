@@ -213,6 +213,9 @@ const storiesDatabase = {
     }
 };
 
+// 暴露数据库引用，供第二季数据文件（stories-walk.js）合并扩充
+window.storiesDatabase = storiesDatabase;
+
 // 全局辅助函数
 window.getStory = (id) => storiesDatabase[id];
 window.getAllStories = () => Object.values(storiesDatabase).sort((a, b) => {
