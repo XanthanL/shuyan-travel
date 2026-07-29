@@ -287,11 +287,43 @@
             font-weight: normal;
         }
 
+        /* 移动端双指操作提示：单指留给页面滚动，避免地图劫持整页 */
+        .touch-hint {
+            position: absolute;
+            inset: 0;
+            z-index: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(62, 39, 35, 0.4);
+            color: #FFF8E1;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            letter-spacing: 0.2em;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+
+        .touch-hint.visible { opacity: 1; }
+
         @media (max-width: 900px) {
+            .map-title { font-size: 1.8rem; }
+            .map-description { font-size: 0.95rem; padding: 0 var(--space-md); }
             .map-layout { flex-direction: column-reverse; height: auto; min-height: 0; --map-w: calc(100vw - 24px); }
-            .map-sidebar { width: 100%; height: 320px; border-right: none; border-top: 1px solid var(--color-border); }
-            .map-main { height: 62vh; min-height: 420px; }
+            .map-sidebar { width: 100%; height: 300px; border-right: none; border-top: 1px solid var(--color-border); }
+            /* svh 避免手机地址栏收放时地图高度跳动 */
+            .map-main { height: 62vh; height: 62svh; min-height: 380px; }
             .here-label { display: none; }
+            .sidebar-header { padding: 12px 16px; }
+            .location-item { padding: 11px 14px; }
+            .location-item-name { font-size: 0.98rem; }
+            .location-item-desc { font-size: 0.82rem; }
+            /* 小屏图例收紧，不盖住半张地图 */
+            .map-legend { font-size: 0.68rem; line-height: 1.8; padding: 6px 10px; }
+            .legend-line { width: 20px; margin-right: 6px; }
+            .legend-dot { margin: 0 11px 0 5px; }
         }
     </style>
 </head>

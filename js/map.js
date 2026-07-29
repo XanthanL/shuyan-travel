@@ -691,18 +691,55 @@ function initTravelMap() {
     
     L.control.zoom({ position: 'bottomright' }).addTo(travelMap);
 
+    setupTouchGesture(mapContainer);
     renderSidebarList();
     addTravelRoute();
     addLocationMarkers();
     addHereMarker();
     addLegend();
 
-    // 初始视野：装下全部足迹，让整条对角线轨迹一眼可见
+    // 初始视野：装下全部足迹，让整条对角线轨迹一眼可见；小屏收窄留白避免轨迹缩成一团
     const bounds = L.latLngBounds(travelLocations.map(loc => [loc.lat, loc.lng]));
-    travelMap.fitBounds(bounds, { padding: [40, 40] });
+    travelMap.fitBounds(bounds, { padding: fitPadding() });
 
     travelMap.on('zoomend', updateMarkerSizes);
     updateMarkerSizes();
+}
+
+function fitPadding() {
+    const p = window.innerWidth <= 900 ? 14 : 40;
+    return [p, p];
+}
+
+// 移动端：单指留给页面滚动，双指才拖动地图，避免地图在长页中劫持滑动
+function setupTouchGesture(mapContainer) {
+    if (!window.matchMedia('(pointer: coarse)').matches) return;
+
+    travelMap.dragging.disable();
+
+    const hint = document.createElement('div');
+    hint.className = 'touch-hint';
+    hint.textContent = '双指移动地图';
+    (mapContainer.parentElement || mapContainer).appendChild(hint);
+
+    let hintTimer = null;
+    mapContainer.addEventListener('touchstart', e => {
+        if (e.touches.length >= 2) {
+            travelMap.dragging.enable();
+            hint.classList.remove('visible');
+            clearTimeout(hintTimer);
+        } else {
+            travelMap.dragging.disable();
+        }
+    }, { passive: true });
+
+    mapContainer.addEventListener('touchmove', e => {
+        if (e.touches.length === 1) {
+            hint.classList.add('visible');
+            clearTimeout(hintTimer);
+            hintTimer = setTimeout(() => hint.classList.remove('visible'), 900);
+        }
+    }, { passive: true });
 }
 
 function renderSidebarList() {
@@ -765,7 +802,8 @@ function addLocationMarkers() {
     allMarkers = [];
     travelLocations.forEach(location => {
         const marker = L.marker([location.lat, location.lng], { icon: buildMarkerIcon(location, false) }).addTo(travelMap);
-        marker.bindPopup(createPopupContent(location), { maxWidth: 300 });
+        // 窄屏下弹窗限宽，避免溢出地图画布
+        marker.bindPopup(createPopupContent(location), { maxWidth: Math.min(300, window.innerWidth - 90) });
         marker.on('click', () => focusLocation(location.id));
         marker.locationData = location;
         allMarkers.push(marker);
@@ -870,7 +908,7 @@ function addTravelRoute() {
 function showAllLocations() {
     if (travelMap) {
         const bounds = L.latLngBounds(travelLocations.map(loc => [loc.lat, loc.lng]));
-        travelMap.fitBounds(bounds, { padding: [50, 50] });
+        travelMap.fitBounds(bounds, { padding: fitPadding() });
         document.querySelectorAll('.location-item').forEach(el => el.classList.remove('active'));
     }
 }
