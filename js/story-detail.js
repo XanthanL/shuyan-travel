@@ -7,6 +7,27 @@ function getStoryIdFromURL() {
     return urlParams.get('id') || '1';
 }
 
+// 按篇更新 SEO 标签：meta description / og 系列 / canonical
+function updateStoryMeta(story) {
+    const setMeta = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.setAttribute('content', value);
+    };
+    // 从正文 HTML 里提纯文本摘要（去掉旁注，避免注释性长文混入）
+    const tmp = document.createElement('div');
+    tmp.innerHTML = story.content;
+    tmp.querySelectorAll('.side-note-content').forEach(n => n.remove());
+    const excerpt = (tmp.textContent || '').replace(/\s+/g, '').slice(0, 90);
+    const pageUrl = `https://xanthanl.github.io/shuyan-travel/story.html?id=${story.id}`;
+
+    setMeta('meta[name="description"]', `${story.subtitle}。${excerpt}…`);
+    setMeta('meta[property="og:title"]', `${story.title} - 树言·旅记`);
+    setMeta('meta[property="og:description"]', `${story.location} · ${story.date}。${story.subtitle}`);
+    setMeta('meta[property="og:url"]', pageUrl);
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute('href', pageUrl);
+}
+
 function updateStoryContent() {
     const storyId = getStoryIdFromURL();
     const story = window.getStory ? window.getStory(storyId) : null;
@@ -79,6 +100,7 @@ function updateStoryContent() {
     }
     
     document.title = `${story.title} - 树言·旅记`;
+    updateStoryMeta(story);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -81,55 +81,51 @@ function renderStories(stories) {
         return;
     }
     
-    container.innerHTML = '';
-    stories.forEach((story, index) => {
-        const card = createStoryCard(story);
-        container.appendChild(card);
-        
-        // 监测卡片整体
-        const cardObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                setTimeout(() => {
-                    card.classList.add('visible');
-                    // 监测卡片内的段落
-                    card.querySelectorAll('.story-excerpt, .story-card-title, .story-card-subtitle').forEach(el => {
-                        el.classList.add('revealed');
-                    });
-                }, index * 150);
-                cardObserver.unobserve(card);
-            }
-        }, { threshold: 0.1 });
-        cardObserver.observe(card);
+    // 篇目多了之后改用紧凑标题式时间线：按年份分组，一行一篇
+    const byYear = new Map();
+    stories.forEach(story => {
+        const year = story.date.slice(0, 4);
+        if (!byYear.has(year)) byYear.set(year, []);
+        byYear.get(year).push(story);
     });
+
+    container.innerHTML = '';
+    const list = document.createElement('div');
+    list.className = 'timeline';
+    byYear.forEach((items, year) => {
+        const head = document.createElement('div');
+        head.className = 'timeline-year';
+        head.innerHTML = `${year}<span class="timeline-year-count">${items.length} 篇</span>`;
+        list.appendChild(head);
+        items.forEach(story => list.appendChild(createTimelineItem(story)));
+    });
+    container.appendChild(list);
+
+    // 行进入视口时轻量淡入
+    const rowObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                rowObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.05 });
+    list.querySelectorAll('.timeline-item, .timeline-year').forEach(el => rowObserver.observe(el));
 }
 
-function createStoryCard(story) {
-    const article = document.createElement('article');
-    article.className = 'story-card';
-    article.onclick = () => {
-        window.location.href = `story.html?id=${story.id}`;
-    };
-    
-    // 摘要处理
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = story.content;
-    const plainText = (tempDiv.textContent || tempDiv.innerText || "").replace(/\s+/g, ' ').trim();
-    const excerpt = plainText.substring(0, 150) + "...";
-
-    article.innerHTML = `
-        <div class="story-card-content">
-            <div class="story-meta">
-                <span>${story.date}</span>
-                <span>${story.location}</span>
-            </div>
-            <h2 class="story-card-title">${story.title}</h2>
-            <p class="story-card-subtitle">${story.subtitle}</p>
-            <p class="story-excerpt">${excerpt}</p>
-            <a href="story.html?id=${story.id}" class="read-more">翻开日记</a>
-        </div>
+function createTimelineItem(story) {
+    const item = document.createElement('a');
+    item.className = 'timeline-item';
+    item.href = `story.html?id=${story.id}`;
+    item.innerHTML = `
+        <span class="timeline-date">${story.date.slice(5)}</span>
+        <span class="timeline-main">
+            <span class="timeline-title">${story.title}</span>
+            <span class="timeline-subtitle">${story.subtitle}</span>
+        </span>
+        <span class="timeline-location">${story.location}</span>
     `;
-    
-    return article;
+    return item;
 }
 
 function initPageTransitions() {

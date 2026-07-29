@@ -44,6 +44,10 @@ __pycache__/
 *.tmp
 *.temp
 
+# 浏览器验证产生的截图
+*_screenshot.png
+*_screenshot.jpg
+
 # 备份文件
 *.bak
 *.backup

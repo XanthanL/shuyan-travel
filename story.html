@@ -6,7 +6,6 @@
     <title>故事详情 - 树言·旅记</title>
     <meta name="description" content="在零下三十度的松花江上听见冰裂，在大漠深处触碰千年壁画。记录那些带有体温、裂痕与泥土味的真实生活。">
     <meta name="theme-color" content="#FFF8E1">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     
     <!-- Favicon / 网页图标 -->
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
@@ -22,9 +21,9 @@
     <meta property="og:url" content="https://xanthanl.github.io/shuyan-travel/story.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="树言·旅记">
+    <link rel="canonical" href="https://xanthanl.github.io/shuyan-travel/story.html">
     
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* 故事详情页面专用样式 */
         .story-detail-container {
@@ -218,13 +217,13 @@
         <!-- 详情容器 -->
         <div class="story-detail-container">
             <a href="index.html" class="story-back-link">
-                <i class="fas fa-arrow-left"></i> 返回时间线
+                ← 返回时间线
             </a>
             
             <header class="story-header">
                 <div class="story-meta">
-                    <span class="story-meta-item"><i class="far fa-calendar"></i> <span id="story-date">加载中...</span></span>
-                    <span class="story-meta-item"><i class="fas fa-map-marker-alt"></i> <span id="story-location">加载中...</span></span>
+                    <span class="story-meta-item"><span id="story-date">加载中...</span></span>
+                    <span class="story-meta-item"><span id="story-location">加载中...</span></span>
                 </div>
                 
                 <h1 class="story-title" id="story-title">正在开启旅途...</h1>
@@ -237,7 +236,7 @@
 
             <nav class="story-navigation">
                 <a href="#" class="story-nav-link prev" id="prev-story" style="display: none;">
-                    <i class="fas fa-arrow-left"></i>
+                    <span aria-hidden="true">←</span>
                     <div class="story-nav-info">
                         <span class="story-nav-label">前一篇</span>
                         <span class="story-nav-title"></span>
@@ -249,13 +248,13 @@
                         <span class="story-nav-label">后一篇</span>
                         <span class="story-nav-title"></span>
                     </div>
-                    <i class="fas fa-arrow-right"></i>
+                    <span aria-hidden="true">→</span>
                 </a>
             </nav>
         </div>
         
         <footer class="site-footer">
-            <p>© 2018-2026 树言·旅记 | 记录每一次出发</p>
+            <p>© 2018-2027 树言·旅记 | 记录每一次出发</p>
         </footer>
     </div>
     

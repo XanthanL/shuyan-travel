@@ -62,6 +62,14 @@
  * 45. 北京 (2026.05) - 闭环
  * 46. 蓟州—玉田 (2026.06) - 麦收
  * 47. 山海关 (2026.07) - 出关
+ *
+ * 第七段·关东（徒步，2026.08-2027.04，终章）：
+ * 48. 兴城 (2026.11) - 冬天的海
+ * 49. 沈阳铁西 (2026.12) - 锈带
+ * 50. 长春 (2027.01) - 黑土
+ * 51. 哈尔滨 (2027.02) - 重上冰面（闭环）
+ * 52. 佳木斯 (2027.03) - 白毛风
+ * 53. 鹤岗 (2027.04) - 终点
  */
 const travelLocations = [
     {
@@ -84,7 +92,7 @@ const travelLocations = [
         season: "冬",
         description: "在零下三十度的密林里，白桦树桩在手电光里像张脸。有些东西，是真的不希望被人类定义。",
         color: "#5D4037",
-        storiesList: [{ title: "消失的界碑：林子里的眼睛", date: "2019.11.20", storyId: "2" }]
+        storiesList: [{ title: "消失的界碑", date: "2019.11.20", storyId: "2" }]
     },
     {
         id: 3,
@@ -117,7 +125,7 @@ const travelLocations = [
         season: "秋",
         description: "在生理性失温面前，阶级共情是唯一的物理热源。那张带膻味的塑料布和辣嗓子的姜汤，砸碎了关于旅行的伪善想象。",
         color: "#8B7355",
-        storiesList: [{ title: "河西走廊：那张带膻味的塑料布", date: "2020.10.05", storyId: "5" }]
+        storiesList: [{ title: "那张带膻味的塑料布", date: "2020.10.05", storyId: "5" }]
     },
     {
         id: 6,
@@ -150,7 +158,7 @@ const travelLocations = [
         season: "春",
         description: "竹椅在青瓦下发出吱呀声，盖碗茶里的叶片浮沉。在这里，慢速不再是一种罪过，而是一种与世界相处的尊严。",
         color: "#5D4037",
-        storiesList: [{ title: "宽窄巷子：锦城的卸妆时刻", date: "2023.03.11", storyId: "8" }]
+        storiesList: [{ title: "锦城的卸妆时刻", date: "2023.03.11", storyId: "8" }]
     },
     {
         id: 9,
@@ -161,7 +169,7 @@ const travelLocations = [
         season: "春",
         description: "路通了，马闲了。这世上的事，快有快的道理，慢有慢的尊严。那块咸得要命的风干肉，是旅途中最实在的东西。",
         color: "#A1887F",
-        storiesList: [{ title: "苍山：最后的马帮", date: "2024.05.20", storyId: "9" }]
+        storiesList: [{ title: "最后的马帮", date: "2024.05.20", storyId: "9" }]
     },
     {
         id: 10,
@@ -172,7 +180,7 @@ const travelLocations = [
         season: "秋",
         description: "当太阳这块烧红的重金属挤出山脊，人类的焦躁显得一文不值。自然有它的步子，我们只需要与之对齐。",
         color: "#8B7355",
-        storiesList: [{ title: "洱海：晨光里的天体节律", date: "2024.09.10", storyId: "10" }]
+        storiesList: [{ title: "晨光里的天体节律", date: "2024.09.10", storyId: "10" }]
     },
     {
         id: 11,
@@ -183,7 +191,7 @@ const travelLocations = [
         season: "冬",
         description: "梅里雪山下的寂静是带有重量的。只有双脚被砂石反复磨砺出的痛觉，才能抵消在这片神迹面前的虚浮感。",
         color: "#A1887F",
-        storiesList: [{ title: "雨崩：物理极处的大地真形", date: "2025.01.12", storyId: "11" }]
+        storiesList: [{ title: "物理极处的大地真形", date: "2025.01.12", storyId: "11" }]
     },
     {
         id: 12,
@@ -194,7 +202,7 @@ const travelLocations = [
         season: "春",
         description: "出雨崩那天，我对停下的面包车摆了摆手。铝杖收进包底，换上一根杜鹃木杖——从这里起，不再上车。",
         color: "#795548",
-        storiesList: [{ title: "德钦：把铝杖换成一根木头", date: "2025.03.05", storyId: "12" }]
+        storiesList: [{ title: "换杖", date: "2025.03.05", storyId: "12" }]
     },
     {
         id: 13,
@@ -205,7 +213,7 @@ const travelLocations = [
         season: "春",
         description: "翻过一道山梁，脚下的水换了姓。金沙江浑得像一江黄汤，不喧哗，力气却一分没少。",
         color: "#8B7355",
-        storiesList: [{ title: "奔子栏：金沙江递来的第一碗浑水", date: "2025.03.10", storyId: "13" }]
+        storiesList: [{ title: "第一碗浑水", date: "2025.03.10", storyId: "13" }]
     },
     {
         id: 14,
@@ -216,7 +224,7 @@ const travelLocations = [
         season: "春",
         description: "江在石头缝里发疯，发了几十万年。那声音先用耳朵听，再用胸口听，最后用脚底板听。",
         color: "#5D4037",
-        storiesList: [{ title: "虎跳峡：一条江在石头缝里发疯", date: "2025.03.15", storyId: "14" }]
+        storiesList: [{ title: "一条江在发疯", date: "2025.03.15", storyId: "14" }]
     },
     {
         id: 15,
@@ -227,7 +235,7 @@ const travelLocations = [
         season: "春",
         description: "长江在这里学会了转弯。我在油腻的桌面上摊开地图，用铅笔把一条斜线从石鼓拉到了鹤岗。",
         color: "#A1887F",
-        storiesList: [{ title: "石鼓：长江在这里学会了转弯", date: "2025.03.20", storyId: "15" }]
+        storiesList: [{ title: "铅笔线", date: "2025.03.20", storyId: "15" }]
     },
     {
         id: 16,
@@ -238,7 +246,7 @@ const travelLocations = [
         season: "春",
         description: "白天的古城是一台开足马力的机器。凌晨四点，纳西阿婆用一渠雪水和一把扫帚，把它刷回了真身。",
         color: "#795548",
-        storiesList: [{ title: "丽江：凌晨四点的古城", date: "2025.03.25", storyId: "16" }]
+        storiesList: [{ title: "凌晨四点的古城", date: "2025.03.25", storyId: "16" }]
     },
     {
         id: 17,
@@ -249,7 +257,7 @@ const travelLocations = [
         season: "春",
         description: "对角线上第一座煤城。挖煤的手和剪芒果枝的手是同一双，一个朝地底要黑的，一个朝天上要绿的。",
         color: "#8B7355",
-        storiesList: [{ title: "华坪：煤黑的地里长出金黄", date: "2025.04.08", storyId: "17" }]
+        storiesList: [{ title: "煤和芒果", date: "2025.04.08", storyId: "17" }]
     },
     {
         id: 18,
@@ -260,7 +268,7 @@ const travelLocations = [
         season: "春",
         description: "这座城是挂在山坡上的。六十年前七户人家一棵树，后来树底下浇出一座钢城——先生产，后生活。",
         color: "#5D4037",
-        storiesList: [{ title: "攀枝花：一座用花名命名的钢城", date: "2025.04.20", storyId: "18" }]
+        storiesList: [{ title: "钢水当根", date: "2025.04.20", storyId: "18" }]
     },
     {
         id: 19,
@@ -271,7 +279,7 @@ const travelLocations = [
         season: "夏",
         description: "安宁河谷的大棚里，春天比日历早两个月。早出来的那两个月，是人凌晨三点一担一担挑进去的。",
         color: "#A1887F",
-        storiesList: [{ title: "米易：大棚里的春天比日历早", date: "2025.05.02", storyId: "19" }]
+        storiesList: [{ title: "早到的春天", date: "2025.05.02", storyId: "19" }]
     },
     {
         id: 20,
@@ -282,7 +290,7 @@ const travelLocations = [
         season: "夏",
         description: "邛海边补网的手和山谷里点火的手，停在同一片天底下。在月城，我跨过了那条看不见的胡焕庸线。",
         color: "#795548",
-        storiesList: [{ title: "西昌：渔网和火箭停在同一片天底下", date: "2025.05.14", storyId: "20" }]
+        storiesList: [{ title: "渔网和火箭", date: "2025.05.14", storyId: "20" }]
     },
     {
         id: 21,
@@ -293,7 +301,7 @@ const travelLocations = [
         season: "夏",
         description: "大凉山腹地，三块石头支起一口锅，一口锅拢住一家人。火塘不熄，家就不散。",
         color: "#8B7355",
-        storiesList: [{ title: "昭觉：火塘边的三块石头", date: "2025.05.24", storyId: "21" }]
+        storiesList: [{ title: "三块石头", date: "2025.05.24", storyId: "21" }]
     },
     {
         id: 22,
@@ -304,7 +312,7 @@ const travelLocations = [
         season: "夏",
         description: "两千五百五十六级钢梯焊在八百米绝壁上，白天是路，雨里是命。花在崖上，蜂在崖上，人就还得回崖上。",
         color: "#5D4037",
-        storiesList: [{ title: "悬崖村：两千五百级钢梯上的雨", date: "2025.06.05", storyId: "22" }]
+        storiesList: [{ title: "钢梯上的雨", date: "2025.06.05", storyId: "22" }]
     },
     {
         id: 23,
@@ -315,7 +323,7 @@ const travelLocations = [
         season: "夏",
         description: "金口大峡谷里，火车从山肚子里开出来又钻回去。钢轨底下压着两千多个名字，一公里一忠魂。",
         color: "#A1887F",
-        storiesList: [{ title: "峨边：每根钢轨底下都有人", date: "2025.06.18", storyId: "23" }]
+        storiesList: [{ title: "钢轨底下有人", date: "2025.06.18", storyId: "23" }]
     },
     {
         id: 24,
@@ -326,7 +334,7 @@ const travelLocations = [
         season: "夏",
         description: "大佛坐了一千二百年，不靠法力，靠发髻里那几条排水沟。海通和尚算的是水账，不是佛账。",
         color: "#795548",
-        storiesList: [{ title: "乐山：大佛首先是一件水利工程", date: "2025.06.28", storyId: "24" }]
+        storiesList: [{ title: "水账", date: "2025.06.28", storyId: "24" }]
     },
     {
         id: 25,
@@ -337,7 +345,7 @@ const travelLocations = [
         season: "夏",
         description: "一台一九五九年的蒸汽机车还在烧煤。一铲煤进去，一口汽出来，这台机器不赊账。",
         color: "#8B7355",
-        storiesList: [{ title: "犍为：一台还在烧煤的蒸汽机车", date: "2025.07.06", storyId: "25" }]
+        storiesList: [{ title: "烧煤的机车", date: "2025.07.06", storyId: "25" }]
     },
     {
         id: 26,
@@ -348,7 +356,7 @@ const travelLocations = [
         season: "夏",
         description: "一根竹篾绳把两亿年的古盐海从一千米地底捞上来。盐是汗的化石，这话不是修辞，是换算。",
         color: "#5D4037",
-        storiesList: [{ title: "自贡：一口一千米的井", date: "2025.07.15", storyId: "26" }]
+        storiesList: [{ title: "盐是汗的化石", date: "2025.07.15", storyId: "26" }]
     },
     {
         id: 27,
@@ -359,7 +367,7 @@ const travelLocations = [
         season: "夏",
         description: "豆花是淡的，蘸水是烈的，分开放才成一碗饭。盐卤本是毒，点进豆浆却开出一窝白花。",
         color: "#A1887F",
-        storiesList: [{ title: "富顺：一碗豆花的淡", date: "2025.07.20", storyId: "27" }]
+        storiesList: [{ title: "一碗豆花的淡", date: "2025.07.20", storyId: "27" }]
     },
     {
         id: 28,
@@ -370,7 +378,7 @@ const travelLocations = [
         season: "夏",
         description: "嘉陵江用十七公里拐一个弯。缫丝女工把手在热水里泡了三十年，指纹都烫平了。",
         color: "#795548",
-        storiesList: [{ title: "南充：热水里泡了三十年的手", date: "2025.08.02", storyId: "28" }]
+        storiesList: [{ title: "泡了三十年的手", date: "2025.08.02", storyId: "28" }]
     },
     {
         id: 29,
@@ -381,7 +389,7 @@ const travelLocations = [
         season: "夏",
         description: "巴山脚下，背二哥的打杵子往地上一拄，笃。两百斤还在背上，人已经能喘气了。",
         color: "#8B7355",
-        storiesList: [{ title: "巴中：打杵子拄地的声音", date: "2025.08.16", storyId: "29" }]
+        storiesList: [{ title: "打杵子的声音", date: "2025.08.16", storyId: "29" }]
     },
     {
         id: 30,
@@ -580,6 +588,72 @@ const travelLocations = [
         description: "石道换了几茬，独轮车的辙早没了。可几条路还并排压在三千万人走出来的那条线上。",
         color: "#5D4037",
         storiesList: [{ title: "出关", date: "2026.07.12", storyId: "47" }]
+    },
+    {
+        id: 48,
+        name: "兴城",
+        lat: 40.6167,
+        lng: 120.7290,
+        year: 2026,
+        season: "冬",
+        description: "城砖是明朝的，摸上去凉。大姨撬的海蛎子是今早的，冰碴里透着甜。",
+        color: "#A1887F",
+        storiesList: [{ title: "冬天的海", date: "2026.11.22", storyId: "48" }]
+    },
+    {
+        id: 49,
+        name: "沈阳·铁西",
+        lat: 41.8020,
+        lng: 123.3489,
+        year: 2026,
+        season: "冬",
+        description: "老关的耳朵是一百多台机床用坏的。炉火退潮了，人没退。",
+        color: "#795548",
+        storiesList: [{ title: "锈带", date: "2026.12.20", storyId: "49" }]
+    },
+    {
+        id: 50,
+        name: "长春",
+        lat: 43.8171,
+        lng: 125.3235,
+        year: 2027,
+        season: "冬",
+        description: "雪底下是黑的，栈子里是黄的。黑的几百年攒一厘米，黄的一年一茬。",
+        color: "#8B7355",
+        storiesList: [{ title: "黑土在雪底下", date: "2027.01.16", storyId: "50" }]
+    },
+    {
+        id: 51,
+        name: "哈尔滨·重访",
+        lat: 45.7750,
+        lng: 126.6300,
+        year: 2027,
+        season: "冬",
+        description: "冰还在裂，还是那个调。递酒的话也还在，只是这回，是从我嘴里说出去的。",
+        color: "#5D4037",
+        storiesList: [{ title: "重上冰面", date: "2027.02.06", storyId: "51" }]
+    },
+    {
+        id: 52,
+        name: "佳木斯",
+        lat: 46.7996,
+        lng: 130.3189,
+        year: 2027,
+        season: "冬",
+        description: "数杆子数到第七十三根，撞上了老于的双闪。平原的危险没有形状。",
+        color: "#A1887F",
+        storiesList: [{ title: "白毛风", date: "2027.03.08", storyId: "52" }]
+    },
+    {
+        id: 53,
+        name: "鹤岗",
+        lat: 47.3320,
+        lng: 130.2747,
+        year: 2027,
+        season: "春",
+        description: "从雨崩到鹤岗，两年零一个月，木杖磨短了一拃多。线画完了。停笔。",
+        color: "#4E342E",
+        storiesList: [{ title: "对角线的另一头", date: "2027.04.16", storyId: "53" }]
     }
 ];
 
@@ -595,7 +669,8 @@ const ROUTE_SEGMENTS = [
     { min: 24, max: 29, name: "第三段 · 川中丘陵" },
     { min: 30, max: 35, name: "第四段 · 秦巴—关中" },
     { min: 36, max: 44, name: "第五段 · 三晋—华北" },
-    { min: 45, max: 47, name: "第六段 · 京畿—出关" }
+    { min: 45, max: 47, name: "第六段 · 京畿—出关" },
+    { min: 48, max: 53, name: "第七段 · 关东（终章）" }
 ];
 
 function segmentOf(id) {
@@ -705,12 +780,12 @@ function updateMarkerSizes() {
     allMarkers.forEach(marker => marker.setIcon(buildMarkerIcon(marker.locationData, small)));
 }
 
-// 当前位置：最新一处足迹上的脉冲标记
+// 终点：对角线收尾处的脉冲标记
 function addHereMarker() {
     const latest = travelLocations.reduce((a, b) => (b.id > a.id ? b : a));
     const hereIcon = L.divIcon({
         className: 'here-marker',
-        html: `<div class="here-pulse"></div><div class="here-label">树言在这里</div>`,
+        html: `<div class="here-pulse"></div><div class="here-label">终点 · 鹤岗</div>`,
         iconSize: [14, 14],
         iconAnchor: [7, 7]
     });
@@ -723,8 +798,8 @@ function addLegend() {
         const div = L.DomUtil.create('div', 'map-legend');
         div.innerHTML = `
             <div><span class="legend-line legend-dashed"></span>第一季 · 乘车（2018-2025）</div>
-            <div><span class="legend-line legend-solid"></span>第二季 · 徒步对角线（2025.03 至今）</div>
-            <div><span class="legend-dot"></span>树言在这里</div>
+            <div><span class="legend-line legend-solid"></span>第二季 · 徒步对角线（2025.03-2027.04）</div>
+            <div><span class="legend-dot"></span>终点 · 鹤岗</div>
         `;
         return div;
     };

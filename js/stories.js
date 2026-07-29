@@ -25,8 +25,8 @@ const storiesDatabase = {
     },
     "2": {
         id: 2,
-        title: "消失的界碑：林子里的眼睛",
-        subtitle: "在大兴安岭的褶皱里，有些东西不希望被人类定义",
+        title: "消失的界碑",
+        subtitle: "大兴安岭：林子里的眼睛，有些东西不希望被人类定义",
         date: "2019.11.20",
         location: "黑龙江 · 密林",
         content: `
@@ -82,8 +82,8 @@ const storiesDatabase = {
     },
     "5": {
         id: 5,
-        title: "河西走廊：那张带膻味的塑料布",
-        subtitle: "在生理性失温面前，阶级共情是唯一的物理热源",
+        title: "那张带膻味的塑料布",
+        subtitle: "河西走廊：在生理性失温面前，阶级共情是唯一的物理热源",
         date: "2020.10.05",
         location: "甘肃 · 荒村",
         content: `
@@ -140,8 +140,8 @@ const storiesDatabase = {
     },
     "8": {
         id: 8,
-        title: "宽窄巷子：锦城的卸妆时刻",
-        subtitle: "在盆地的湿润里，找回生命本该有的粗粝频率",
+        title: "锦城的卸妆时刻",
+        subtitle: "宽窄巷子：在盆地的湿润里，找回生命本该有的粗粝频率",
         date: "2023.03.11",
         location: "成都 · 宽窄巷子",
         content: `
@@ -159,8 +159,8 @@ const storiesDatabase = {
     },
     "9": {
         id: 9,
-        title: "苍山：最后的马帮",
-        subtitle: "当马铃声消失在柏油路尽头，空气里还残留着汗味",
+        title: "最后的马帮",
+        subtitle: "苍山：当马铃声消失在柏油路尽头，空气里还残留着汗味",
         date: "2024.05.20",
         location: "云南 · 苍山",
         content: `
@@ -176,8 +176,8 @@ const storiesDatabase = {
     },
     "10": {
         id: 10,
-        title: "洱海：晨光里的天体节律",
-        subtitle: "当太阳这块烧红的重金属挤出山脊，人类的焦躁显得一文不值",
+        title: "晨光里的天体节律",
+        subtitle: "洱海：当太阳这块烧红的重金属挤出山脊，人类的焦躁显得一文不值",
         date: "2024.09.10",
         location: "大理 · 洱海",
         content: `
@@ -195,8 +195,8 @@ const storiesDatabase = {
     },
     "11": {
         id: 11,
-        title: "雨崩：物理极处的大地真形",
-        subtitle: "当二十公斤的负重磨穿了肩膀，所谓的“神”才显出骨架",
+        title: "物理极处的大地真形",
+        subtitle: "雨崩：当二十公斤的负重磨穿了肩膀，所谓的“神”才显出骨架",
         date: "2025.01.12",
         location: "云南 · 雨崩村",
         content: `
