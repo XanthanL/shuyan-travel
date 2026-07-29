@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>旅行地图 - 树言·旅记</title>
-    <meta name="description" content="11处足迹，8年光阴。在交互式地图上追寻那些快要被遗忘的、极其具体的瞬间。">
+    <meta name="description" content="47处足迹：八年乘车的虚线，和一条从雨崩徒步到山海关外、还在延长的对角线。在交互式地图上看清整条行走的轨迹。">
     <meta name="theme-color" content="#FFF8E1">
     <link rel="canonical" href="https://xanthanl.github.io/shuyan-travel/map.html">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -19,7 +19,7 @@
     
     <!-- Open Graph / 微信分享元数据 -->
     <meta property="og:title" content="旅行地图 - 树言·旅记">
-    <meta property="og:description" content="这是我用双脚在大地上写下的诗。11处足迹，8年光阴，在地图上追寻那些快要被遗忘的、极其具体的瞬间。">
+    <meta property="og:description" content="这是我用双脚在大地上写下的诗。47处足迹，一条从雨崩斜穿版图、已出山海关的徒步对角线，还在往东北延长。">
     <meta property="og:image" content="https://xanthanl.github.io/shuyan-travel/assets/android-chrome-512x512.png">
     <meta property="og:url" content="https://xanthanl.github.io/shuyan-travel/map.html">
     <meta property="og:type" content="website">
@@ -52,10 +52,11 @@
             line-height: 1.6;
         }
 
-        /* 地图页面布局 */
+        /* 地图页面布局：点位密集后需要更大的画布呈现整条轨迹 */
         .map-layout {
             display: flex;
-            height: 650px;
+            height: min(82vh, 920px);
+            min-height: 620px;
             background: var(--color-paper);
             border: 1px solid var(--color-border);
             overflow: hidden;
@@ -63,7 +64,7 @@
         }
 
         .map-sidebar {
-            width: 350px;
+            width: 330px;
             border-right: 1px solid var(--color-border);
             display: flex;
             flex-direction: column;
@@ -112,10 +113,30 @@
             height: 100%;
         }
 
-        /* 列表项 */
+        /* 侧栏分段标题 */
+        .location-group-title {
+            position: sticky;
+            top: -15px;
+            z-index: 5;
+            margin: 10px -15px 0;
+            padding: 8px 20px;
+            background: var(--color-paper);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            letter-spacing: 0.15em;
+            color: var(--color-earth);
+        }
+
+        .location-group-title:first-child {
+            margin-top: -15px;
+            border-top: none;
+        }
+
+        /* 列表项：47 项后收紧间距 */
         .location-item {
-            padding: 20px;
-            margin-bottom: 15px;
+            padding: 14px 16px;
             border-bottom: 1px solid var(--color-border);
             cursor: pointer;
             transition: all 0.3s;
@@ -134,22 +155,115 @@
             display: block;
             font-weight: bold;
             color: var(--color-dark-earth);
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+            font-size: 1.05rem;
+            margin-bottom: 3px;
         }
 
         .location-item-date {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--color-earth);
             font-family: var(--font-sans);
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
 
         .location-item-desc {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             color: var(--color-ink);
             line-height: 1.5;
+            opacity: 0.85;
+        }
+
+        /* 徒步轨迹：沿线流动的脚步虚线 */
+        .walk-flow {
+            stroke-dasharray: 2 10;
+            stroke-linecap: round;
+            animation: walk-dash 1.4s linear infinite;
+        }
+
+        @keyframes walk-dash {
+            to { stroke-dashoffset: -12; }
+        }
+
+        /* 当前位置脉冲标记 */
+        .here-marker { pointer-events: none; }
+
+        .here-pulse {
+            position: absolute;
+            top: 0; left: 0;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+        }
+
+        .here-pulse::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            border: 2px solid rgba(191, 54, 12, 0.6);
+            animation: here-ripple 1.8s ease-out infinite;
+        }
+
+        .here-pulse::after {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            border: 2px solid rgba(191, 54, 12, 0.4);
+            animation: here-ripple 1.8s ease-out 0.6s infinite;
+        }
+
+        @keyframes here-ripple {
+            0%   { transform: scale(0.4); opacity: 1; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+
+        .here-label {
+            position: absolute;
+            top: -4px;
+            left: 22px;
+            white-space: nowrap;
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            color: #BF360C;
+            background: rgba(255, 248, 225, 0.9);
+            border: 1px solid rgba(191, 54, 12, 0.35);
+            border-radius: 3px;
+            padding: 2px 8px;
+            letter-spacing: 0.1em;
+        }
+
+        /* 图例 */
+        .map-legend {
+            background: rgba(255, 248, 225, 0.92);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 10px 14px;
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            color: var(--color-ink);
+            line-height: 2;
+        }
+
+        .legend-line {
+            display: inline-block;
+            width: 28px;
+            height: 0;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .legend-dashed { border-top: 2px dashed #795548; opacity: 0.6; }
+        .legend-solid { border-top: 3px solid #BF360C; }
+
+        .legend-dot {
+            display: inline-block;
+            width: 10px; height: 10px;
+            margin: 0 17px 0 9px;
+            border-radius: 50%;
+            background: #BF360C;
+            vertical-align: middle;
+            box-shadow: 0 0 0 3px rgba(191, 54, 12, 0.25);
         }
 
         .travel-stats-simple {
@@ -173,9 +287,10 @@
         }
 
         @media (max-width: 900px) {
-            .map-layout { flex-direction: column-reverse; height: 850px; }
-            .map-sidebar { width: 100%; height: 350px; border-right: none; border-top: 1px solid var(--color-border); }
-            .map-main { height: 500px; }
+            .map-layout { flex-direction: column-reverse; height: auto; min-height: 0; }
+            .map-sidebar { width: 100%; height: 320px; border-right: none; border-top: 1px solid var(--color-border); }
+            .map-main { height: 62vh; min-height: 420px; }
+            .here-label { display: none; }
         }
     </style>
 </head>
@@ -194,14 +309,14 @@
         <main class="main-content">
             <div class="map-header">
                 <h2 class="map-title">旅行足迹</h2>
-                <p class="map-description">这是我用双脚在大地上写下的诗。左侧是记忆的索引，右侧是它们精准的地理归宿。</p>
+                <p class="map-description">这是我用双脚在大地上写下的诗。淡虚线是八年里坐车走过的路；深色实线是从雨崩起笔、斜穿版图的徒步对角线——它还在往东北延长。</p>
             </div>
             
             <div class="map-layout">
                 <aside class="map-sidebar">
                     <div class="sidebar-header">
                         <span id="location-count">正在读取记录...</span>
-                        <button class="show-all-btn" onclick="showAllLocations()">缩放全图</button>
+                        <button class="show-all-btn" onclick="showAllLocations()">轨迹全览</button>
                     </div>
                     <div class="location-list-container" id="location-list"></div>
                 </aside>

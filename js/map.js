@@ -37,7 +37,31 @@
  * 26. 自贡 (2025.07) - 汗盐
  * 27. 富顺 (2025.07) - 蘸水
  * 28. 南充 (2025.08) - 缫丝
- * 29. 巴中 (2025.08) - 杵声
+  * 29. 巴中 (2025.08) - 杵声
+ *
+ * 第四段·秦巴—关中（徒步，2025.09-11）：
+ * 30. 米仓山 (2025.09) - 出川
+ * 31. 汉中 (2025.09) - 稻界
+ * 32. 洋县 (2025.09) - 朱鹮
+ * 33. 秦岭分水岭 (2025.10) - 分水
+ * 34. 西安 (2025.10) - 早市
+ * 35. 韩城 (2025.11) - 黄河
+ *
+ * 第五段·三晋—华北（徒步，2025.12-2026.05）：
+ * 36. 河津 (2025.12) - 过河
+ * 37. 临汾 (2025.12) - 白鹭
+ * 38. 洪洞 (2025.12) - 槐树
+ * 44. 灵石 (2026.01，正定补记) - 空窑
+ * 39. 平遥 (2026.01) - 票号
+ * 40. 太原 (2026.02) - 酸锈
+ * 41. 阳泉 (2026.03) - 矸石
+ * 42. 井陉 (2026.03) - 车辙
+ * 43. 正定 (2026.04) - 平原
+ *
+ * 第六段·京畿—出关（徒步，2026.05-07）：
+ * 45. 北京 (2026.05) - 闭环
+ * 46. 蓟州—玉田 (2026.06) - 麦收
+ * 47. 山海关 (2026.07) - 出关
  */
 const travelLocations = [
     {
@@ -358,10 +382,225 @@ const travelLocations = [
         description: "巴山脚下，背二哥的打杵子往地上一拄，笃。两百斤还在背上，人已经能喘气了。",
         color: "#8B7355",
         storiesList: [{ title: "巴中：打杵子拄地的声音", date: "2025.08.16", storyId: "29" }]
+    },
+    {
+        id: 30,
+        name: "米仓山",
+        lat: 32.6500,
+        lng: 106.8500,
+        year: 2025,
+        season: "秋",
+        description: "红叶还没红，先红的是脚踝。垭口界碑一步跨过去，半年的四川留在身后。",
+        color: "#5D4037",
+        storiesList: [{ title: "翻米仓山", date: "2025.09.02", storyId: "30" }]
+    },
+    {
+        id: 31,
+        name: "汉中",
+        lat: 33.0678,
+        lng: 107.0238,
+        year: 2025,
+        season: "秋",
+        description: "秦岭挡住寒潮，巴山兜住水汽，稻子在这里守住它的北界。凌晨五点的热面皮，烫红了揭笼布的手。",
+        color: "#A1887F",
+        storiesList: [{ title: "稻子的北界", date: "2025.09.12", storyId: "31" }]
+    },
+    {
+        id: 32,
+        name: "洋县",
+        lat: 33.2225,
+        lng: 107.5459,
+        year: 2025,
+        season: "秋",
+        description: "四十年前全世界剩七只朱鹮。今天天上飞的每一只，都是那七只的后代。",
+        color: "#795548",
+        storiesList: [{ title: "七只鸟的后代", date: "2025.09.24", storyId: "32" }]
+    },
+    {
+        id: 33,
+        name: "秦岭分水岭",
+        lat: 33.8500,
+        lng: 108.8700,
+        year: 2025,
+        season: "秋",
+        description: "华西秋雨里翻主脊，夜里石头在水底响。一道岭分开两碗水：碑南入长江，碑北入黄河。",
+        color: "#8B7355",
+        storiesList: [{ title: "一道岭，两碗水", date: "2025.10.10", storyId: "33" }]
+    },
+    {
+        id: 34,
+        name: "西安",
+        lat: 34.3416,
+        lng: 108.9398,
+        year: 2025,
+        season: "秋",
+        description: "一千三百万人的城，人只在城墙根的早市上露脸。游客吃名气，街坊吃习惯。",
+        color: "#5D4037",
+        storiesList: [{ title: "城墙根的早市", date: "2025.10.26", storyId: "34" }]
+    },
+    {
+        id: 35,
+        name: "韩城",
+        lat: 35.4760,
+        lng: 110.4425,
+        year: 2025,
+        season: "秋",
+        description: "党家村的家训凿在砖上，六百年没烂。黄河从龙门挤出来，像憋了一千里的话终于说完了。",
+        color: "#A1887F",
+        storiesList: [{ title: "黄河第一面", date: "2025.11.10", storyId: "35" }]
+    },
+    {
+        id: 36,
+        name: "河津",
+        lat: 35.5964,
+        lng: 110.7118,
+        year: 2025,
+        season: "冬",
+        description: "二十分钟走完黄河，河在脚底下响。桥那头，烟囱林顶着橘红的火苗，替山西接了我。",
+        color: "#795548",
+        storiesList: [{ title: "过河", date: "2025.12.02", storyId: "36" }]
+    },
+    {
+        id: 37,
+        name: "临汾",
+        lat: 36.0880,
+        lng: 111.5190,
+        year: 2025,
+        season: "冬",
+        description: "鱼回来，鸟就跟着回来。汾河的记性比人好，账一笔一笔记着，只是结得慢。",
+        color: "#8B7355",
+        storiesList: [{ title: "水的记性", date: "2025.12.18", storyId: "37" }]
+    },
+    {
+        id: 38,
+        name: "洪洞",
+        lat: 36.2537,
+        lng: 111.6740,
+        year: 2025,
+        season: "冬",
+        description: "六百年，二十二代，压成族谱第一页的一行字。老人的手指按在那行字上，按了很久。",
+        color: "#5D4037",
+        storiesList: [{ title: "大槐树", date: "2025.12.30", storyId: "38" }]
+    },
+    {
+        id: 44,
+        name: "灵石",
+        lat: 36.8479,
+        lng: 111.7785,
+        year: 2026,
+        season: "冬",
+        description: "空窑洞里三个鬼：一个是风吹瓶口，一个是冰锥滴水，一个是热气掠帘。天亮全招了。",
+        color: "#795548",
+        storiesList: [{ title: "空窑一夜", date: "2026.05.02", storyId: "44" }]
+    },
+    {
+        id: 39,
+        name: "平遥",
+        lat: 37.1892,
+        lng: 112.1763,
+        year: 2026,
+        season: "冬",
+        description: "一张汇票走三千里，押的是算盘珠子的准，和镖师脖子的硬。",
+        color: "#A1887F",
+        storiesList: [{ title: "算盘和命", date: "2026.01.22", storyId: "39" }]
+    },
+    {
+        id: 40,
+        name: "太原",
+        lat: 37.8706,
+        lng: 112.5489,
+        year: 2026,
+        season: "冬",
+        description: "醋缸里的酸是活着的时间，铁轨上的锈是停了的时间。一座城同时走着两种时间。",
+        color: "#795548",
+        storiesList: [{ title: "酸和锈", date: "2026.02.12", storyId: "40" }]
+    },
+    {
+        id: 41,
+        name: "阳泉",
+        lat: 37.8566,
+        lng: 113.5804,
+        year: 2026,
+        season: "春",
+        description: "矸石山自己烧自己，烧了几十年。老侯手背上的煤纹，也是火留的字。",
+        color: "#8B7355",
+        storiesList: [{ title: "烧不完的山", date: "2026.03.06", storyId: "41" }]
+    },
+    {
+        id: 42,
+        name: "井陉",
+        lat: 38.0323,
+        lng: 114.1442,
+        year: 2026,
+        season: "春",
+        description: "手指伸进车辙，大半个手掌深。两千年的车轮，都走在同一道槽里。",
+        color: "#5D4037",
+        storiesList: [{ title: "车辙", date: "2026.03.28", storyId: "42" }]
+    },
+    {
+        id: 43,
+        name: "正定",
+        lat: 38.1466,
+        lng: 114.5708,
+        year: 2026,
+        season: "春",
+        description: "太行在身后合上门，平原在眼前铺开。从这儿到北京，再没有一座山。",
+        color: "#A1887F",
+        storiesList: [{ title: "平原开始了", date: "2026.04.16", storyId: "43" }]
+    },
+    {
+        id: 45,
+        name: "北京·故宫外",
+        lat: 39.9169,
+        lng: 116.3907,
+        year: 2026,
+        season: "夏",
+        description: "神武门外站了一上午，没进去。扫帚声还在，嚓，嚓，节拍没变；人不在了。",
+        color: "#795548",
+        storiesList: [{ title: "神武门外", date: "2026.05.26", storyId: "45" }]
+    },
+    {
+        id: 46,
+        name: "蓟州—玉田",
+        lat: 39.9004,
+        lng: 117.7386,
+        year: 2026,
+        season: "夏",
+        description: "收割机身后那股金色的灰，落在胳膊上细细的痒。整个华北平原都在扬金子。",
+        color: "#8B7355",
+        storiesList: [{ title: "金色的灰", date: "2026.06.15", storyId: "46" }]
+    },
+    {
+        id: 47,
+        name: "山海关",
+        lat: 40.0087,
+        lng: 119.7736,
+        year: 2026,
+        season: "夏",
+        description: "石道换了几茬，独轮车的辙早没了。可几条路还并排压在三千万人走出来的那条线上。",
+        color: "#5D4037",
+        storiesList: [{ title: "出关", date: "2026.07.12", storyId: "47" }]
     }
 ];
 
 let travelMap = null;
+let allMarkers = [];
+let markersSmall = null;
+
+// 分段索引：侧栏分组标题用（灵石 44 按地理顺序归入第五段）
+const ROUTE_SEGMENTS = [
+    { min: 1,  max: 11, name: "第一季 · 八年乘车（2018-2025）" },
+    { min: 12, max: 17, name: "第一段 · 横断山" },
+    { min: 18, max: 23, name: "第二段 · 攀西—大凉山" },
+    { min: 24, max: 29, name: "第三段 · 川中丘陵" },
+    { min: 30, max: 35, name: "第四段 · 秦巴—关中" },
+    { min: 36, max: 44, name: "第五段 · 三晋—华北" },
+    { min: 45, max: 47, name: "第六段 · 京畿—出关" }
+];
+
+function segmentOf(id) {
+    return ROUTE_SEGMENTS.find(s => id >= s.min && id <= s.max);
+}
 
 function initTravelMap() {
     if (typeof L === 'undefined') return;
@@ -378,8 +617,17 @@ function initTravelMap() {
     L.control.zoom({ position: 'bottomright' }).addTo(travelMap);
 
     renderSidebarList();
-    addLocationMarkers();
     addTravelRoute();
+    addLocationMarkers();
+    addHereMarker();
+    addLegend();
+
+    // 初始视野：装下全部足迹，让整条对角线轨迹一眼可见
+    const bounds = L.latLngBounds(travelLocations.map(loc => [loc.lat, loc.lng]));
+    travelMap.fitBounds(bounds, { padding: [40, 40] });
+
+    travelMap.on('zoomend', updateMarkerSizes);
+    updateMarkerSizes();
 }
 
 function renderSidebarList() {
@@ -388,11 +636,22 @@ function renderSidebarList() {
     if (!listContainer) return;
 
     listContainer.innerHTML = '';
-    countBadge.textContent = `共记录 ${travelLocations.length} 处足迹`;
+    const walkCount = travelLocations.filter(loc => loc.id >= 12).length;
+    countBadge.textContent = `共 ${travelLocations.length} 处足迹 · 徒步 ${walkCount} 处`;
 
     const sortedLocations = [...travelLocations].sort((a, b) => a.year - b.year);
 
+    let lastSegment = null;
     sortedLocations.forEach(loc => {
+        const segment = segmentOf(loc.id);
+        if (segment && segment !== lastSegment) {
+            const groupTitle = document.createElement('div');
+            groupTitle.className = 'location-group-title';
+            groupTitle.textContent = segment.name;
+            listContainer.appendChild(groupTitle);
+            lastSegment = segment;
+        }
+
         const item = document.createElement('div');
         item.className = 'location-item';
         item.id = `sidebar-item-${loc.id}`;
@@ -406,21 +665,70 @@ function renderSidebarList() {
     });
 }
 
-function addLocationMarkers() {
-    travelLocations.forEach(location => {
-        const customIcon = L.divIcon({
+// 两套图标：低缩放用小圆点（密集点位不遮轨迹），放大后换回带编号的大点
+function buildMarkerIcon(location, small) {
+    if (small) {
+        const size = location.id >= 12 ? 10 : 14;
+        return L.divIcon({
             className: 'custom-marker',
-            html: `<div style="width:24px;height:24px;background:${location.color};border:2px solid #fff;border-radius:50%;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;color:white;font-size:10px;">${location.id}</div>`,
-            iconSize: [24, 24],
-            iconAnchor: [12, 12],
-            popupAnchor: [0, -12]
+            html: `<div style="width:${size}px;height:${size}px;background:${location.color};border:2px solid #fff;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.35);"></div>`,
+            iconSize: [size, size],
+            iconAnchor: [size / 2, size / 2],
+            popupAnchor: [0, -size / 2]
         });
-        
-        const marker = L.marker([location.lat, location.lng], { icon: customIcon }).addTo(travelMap);
+    }
+    return L.divIcon({
+        className: 'custom-marker',
+        html: `<div style="width:24px;height:24px;background:${location.color};border:2px solid #fff;border-radius:50%;box-shadow:0 2px 5px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;color:white;font-size:10px;">${location.id}</div>`,
+        iconSize: [24, 24],
+        iconAnchor: [12, 12],
+        popupAnchor: [0, -12]
+    });
+}
+
+function addLocationMarkers() {
+    allMarkers = [];
+    travelLocations.forEach(location => {
+        const marker = L.marker([location.lat, location.lng], { icon: buildMarkerIcon(location, false) }).addTo(travelMap);
         marker.bindPopup(createPopupContent(location), { maxWidth: 300 });
         marker.on('click', () => focusLocation(location.id));
         marker.locationData = location;
+        allMarkers.push(marker);
     });
+}
+
+function updateMarkerSizes() {
+    if (!travelMap) return;
+    const small = travelMap.getZoom() < 6;
+    if (small === markersSmall) return;
+    markersSmall = small;
+    allMarkers.forEach(marker => marker.setIcon(buildMarkerIcon(marker.locationData, small)));
+}
+
+// 当前位置：最新一处足迹上的脉冲标记
+function addHereMarker() {
+    const latest = travelLocations.reduce((a, b) => (b.id > a.id ? b : a));
+    const hereIcon = L.divIcon({
+        className: 'here-marker',
+        html: `<div class="here-pulse"></div><div class="here-label">树言在这里</div>`,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7]
+    });
+    L.marker([latest.lat, latest.lng], { icon: hereIcon, interactive: false, zIndexOffset: -100, keyboard: false }).addTo(travelMap);
+}
+
+function addLegend() {
+    const legend = L.control({ position: 'bottomleft' });
+    legend.onAdd = () => {
+        const div = L.DomUtil.create('div', 'map-legend');
+        div.innerHTML = `
+            <div><span class="legend-line legend-dashed"></span>第一季 · 乘车（2018-2025）</div>
+            <div><span class="legend-line legend-solid"></span>第二季 · 徒步对角线（2025.03 至今）</div>
+            <div><span class="legend-dot"></span>树言在这里</div>
+        `;
+        return div;
+    };
+    legend.addTo(travelMap);
 }
 
 function createPopupContent(location) {
@@ -470,14 +778,17 @@ function addTravelRoute() {
     const vehiclePoints = sorted.filter(loc => loc.id <= 11).map(loc => [loc.lat, loc.lng]);
     const walkPoints = sorted.filter(loc => loc.id >= 12).map(loc => [loc.lat, loc.lng]);
 
-    // 第一季（ID 1-11）：乘车/飞行轨迹，虚线
-    L.polyline(vehiclePoints, { color: '#795548', weight: 2, opacity: 0.5, dashArray: '5, 10' }).addTo(travelMap);
+    // 第一季（ID 1-11）：乘车/飞行轨迹，淡虚线，不和徒步线抢眼
+    L.polyline(vehiclePoints, { color: '#795548', weight: 2, opacity: 0.35, dashArray: '5, 10' }).addTo(travelMap);
 
-    // 第二季（ID ≥ 12）：徒步对角线，实线，从雨崩（第一季终点）起笔
+    // 第二季（ID ≥ 12）：徒步对角线，从雨崩（第一季终点）起笔
+    // 三层叠画：宽底衬压出轮廓 + 实线主体 + 流动虚线模拟脚步前进
     if (walkPoints.length) {
         const pivot = travelLocations.find(loc => loc.id === 11);
         const walkLine = pivot ? [[pivot.lat, pivot.lng], ...walkPoints] : walkPoints;
-        L.polyline(walkLine, { color: '#BF360C', weight: 3, opacity: 0.85 }).addTo(travelMap);
+        L.polyline(walkLine, { color: '#BF360C', weight: 8, opacity: 0.15, lineCap: 'round', interactive: false }).addTo(travelMap);
+        L.polyline(walkLine, { color: '#BF360C', weight: 3, opacity: 0.9 }).addTo(travelMap);
+        L.polyline(walkLine, { color: '#FFF8E1', weight: 1.5, opacity: 0.95, className: 'walk-flow', interactive: false }).addTo(travelMap);
     }
 }
 

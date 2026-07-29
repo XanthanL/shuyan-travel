@@ -392,6 +392,45 @@ body {
     letter-spacing: 0.1em;
 }
 
+/* ===== 徒步进度条（首页时间线顶部） ===== */
+.walk-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    margin: 30px auto 10px;
+    padding: 14px 20px;
+    border-top: 1px dashed var(--color-border);
+    border-bottom: 1px dashed var(--color-border);
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--color-earth);
+    letter-spacing: 0.08em;
+}
+
+.walk-status-tag {
+    color: #BF360C;
+    border: 1px solid rgba(191, 54, 12, 0.35);
+    border-radius: 3px;
+    padding: 2px 10px;
+}
+
+.walk-status-route {
+    color: var(--color-ink);
+}
+
+.walk-status-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-accent);
+    transition: opacity 0.2s;
+}
+
+.walk-status-link:hover {
+    opacity: 0.7;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
     .site-title { font-size: 2.5rem; }
