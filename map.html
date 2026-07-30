@@ -7,7 +7,6 @@
     <meta name="description" content="53处足迹：八年乘车的虚线，和一条从雨崩徒步到鹤岗、斜穿整张版图的对角线。在交互式地图上看清整条行走的轨迹。">
     <meta name="theme-color" content="#FFF8E1">
     <link rel="canonical" href="https://xanthanl.github.io/shuyan-travel/map.html">
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     
     <!-- Favicon / 网页图标 -->
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
@@ -25,10 +24,10 @@
     <meta property="og:site_name" content="树言·旅记">
     
     <link rel="stylesheet" href="css/style.css">
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <!-- Leaflet JavaScript：defer 避免阻塞首次渲染，与页尾同样 defer 的 map.js 按文档顺序执行 -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <!-- Leaflet（自托管）：unpkg 在移动网络下经常超时，导致手机端地图整体空白 -->
+    <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+    <!-- defer 避免阻塞首次渲染，与页尾同样 defer 的 map.js 按文档顺序执行 -->
+    <script src="vendor/leaflet/leaflet.js" defer></script>
     <style>
         .map-header {
             text-align: center;

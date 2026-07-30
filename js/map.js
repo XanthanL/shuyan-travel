@@ -678,9 +678,13 @@ function segmentOf(id) {
 }
 
 function initTravelMap() {
-    if (typeof L === 'undefined') return;
     const mapContainer = document.getElementById('travel-map');
     if (!mapContainer) return;
+    // Leaflet 加载失败时给出可见提示，不再静默留白
+    if (typeof L === 'undefined') {
+        mapContainer.innerHTML = '<p style="padding:40px 20px;text-align:center;color:var(--color-earth);">地图组件没加载出来，请刷新重试。</p>';
+        return;
+    }
     
     travelMap = L.map('travel-map', { zoomControl: false, attributionControl: false }).setView([35.8617, 104.1954], 4);
     
@@ -704,6 +708,22 @@ function initTravelMap() {
 
     travelMap.on('zoomend', updateMarkerSizes);
     updateMarkerSizes();
+
+    // 移动端关键修复：defer 脚本 + svh/字体布局未完成时，容器高度可能还是 0，
+    // Leaflet 会按错误尺寸初始化且不自动纠正，表现为整块空白。
+    // 布局稳定后重算尺寸并重新套入轨迹。
+    const refresh = () => {
+        if (!travelMap) return;
+        travelMap.invalidateSize();
+        travelMap.fitBounds(bounds, { padding: fitPadding() });
+    };
+    requestAnimationFrame(refresh);
+    window.addEventListener('load', refresh);
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(refresh, 200);
+    });
 }
 
 function fitPadding() {
