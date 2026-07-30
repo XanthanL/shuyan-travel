@@ -213,7 +213,7 @@ const storiesDatabase = {
     }
 };
 
-// 暴露数据库引用，供第二季数据文件（stories-walk.js）合并扩充
+// 暴露数据库引用，供徒步数据文件（stories-walk.js）合并扩充
 window.storiesDatabase = storiesDatabase;
 
 // 全局辅助函数

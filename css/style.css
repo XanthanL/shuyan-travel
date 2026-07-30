@@ -381,10 +381,12 @@ body {
     transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-/* 已经可见的类 */
+/* 已经可见的类：终态用 none 而非 translateY(0)，
+   避免 transform 让每个段落各自形成层叠上下文，
+   导致旁注便签盖住上一段却被下一段文字压住 */
 .story-excerpt.revealed, .story-content p.revealed, .about-content p.revealed, .section-content p.revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 
 .story-content blockquote {

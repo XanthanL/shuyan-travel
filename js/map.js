@@ -15,7 +15,7 @@
  * 10. 大理 (2024.09) - 节律
  * 11. 雨崩 (2025) - 奖赏
  *
- * —— 第二季「对角线」徒步（ID ≥ 12，弃车步行，西南 → 东北）——
+ * —— 「对角线」徒步（ID ≥ 12，弃车步行，西南 → 东北）——
  * 12. 德钦 (2025.03) - 弃轮
  * 13. 奔子栏 (2025.03) - 换水
  * 14. 虎跳峡 (2025.03) - 江声
@@ -663,7 +663,7 @@ let markersSmall = null;
 
 // 分段索引：侧栏分组标题用（灵石 44 按地理顺序归入第五段）
 const ROUTE_SEGMENTS = [
-    { min: 1,  max: 11, name: "第一季 · 八年乘车（2018-2025）" },
+    { min: 1,  max: 11, name: "八年乘车（2018-2025）" },
     { min: 12, max: 17, name: "第一段 · 横断山" },
     { min: 18, max: 23, name: "第二段 · 攀西—大凉山" },
     { min: 24, max: 29, name: "第三段 · 川中丘陵" },
@@ -835,8 +835,8 @@ function addLegend() {
     legend.onAdd = () => {
         const div = L.DomUtil.create('div', 'map-legend');
         div.innerHTML = `
-            <div><span class="legend-line legend-dashed"></span>第一季 · 乘车（2018-2025）</div>
-            <div><span class="legend-line legend-solid"></span>第二季 · 徒步对角线（2025.03-2027.04）</div>
+            <div><span class="legend-line legend-dashed"></span>乘车旧路（2018-2025）</div>
+            <div><span class="legend-line legend-solid"></span>徒步对角线（2025.03-2027.04）</div>
             <div><span class="legend-dot"></span>终点 · 鹤岗</div>
         `;
         return div;
@@ -891,10 +891,10 @@ function addTravelRoute() {
     const vehiclePoints = sorted.filter(loc => loc.id <= 11).map(loc => [loc.lat, loc.lng]);
     const walkPoints = sorted.filter(loc => loc.id >= 12).map(loc => [loc.lat, loc.lng]);
 
-    // 第一季（ID 1-11）：乘车/飞行轨迹，淡虚线，不和徒步线抢眼
+    // 乘车岁月（ID 1-11）：乘车/飞行轨迹，淡虚线，不和徒步线抢眼
     L.polyline(vehiclePoints, { color: '#795548', weight: 2, opacity: 0.35, dashArray: '5, 10' }).addTo(travelMap);
 
-    // 第二季（ID ≥ 12）：徒步对角线，从雨崩（第一季终点）起笔
+    // 徒步（ID ≥ 12）：对角线，从雨崩（乘车岁月的终点）起笔
     // 三层叠画：宽底衬压出轮廓 + 实线主体 + 流动虚线模拟脚步前进
     if (walkPoints.length) {
         const pivot = travelLocations.find(loc => loc.id === 11);
